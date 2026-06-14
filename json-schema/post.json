@@ -1,0 +1,102 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://join-lemmy.org/schema/post.json",
+  "title": "Post",
+  "description": "A post in a Lemmy community, representing a link, text, or image submission.",
+  "type": "object",
+  "required": ["id", "name", "creator_id", "community_id", "published"],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique identifier for the post"
+    },
+    "name": {
+      "type": "string",
+      "description": "Title of the post",
+      "maxLength": 200
+    },
+    "url": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "Link URL for link posts"
+    },
+    "body": {
+      "type": ["string", "null"],
+      "description": "Text body content of the post (Markdown supported)"
+    },
+    "creator_id": {
+      "type": "integer",
+      "description": "ID of the user who created the post"
+    },
+    "community_id": {
+      "type": "integer",
+      "description": "ID of the community the post belongs to"
+    },
+    "removed": {
+      "type": "boolean",
+      "description": "Whether the post was removed by a moderator"
+    },
+    "locked": {
+      "type": "boolean",
+      "description": "Whether comments on the post are locked"
+    },
+    "published": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the post was published"
+    },
+    "updated": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Timestamp when the post was last updated"
+    },
+    "deleted": {
+      "type": "boolean",
+      "description": "Whether the post was deleted by the author"
+    },
+    "nsfw": {
+      "type": "boolean",
+      "description": "Whether the post is marked as NSFW"
+    },
+    "ap_id": {
+      "type": "string",
+      "format": "uri",
+      "description": "ActivityPub ID for federation"
+    },
+    "local": {
+      "type": "boolean",
+      "description": "Whether the post originated on this instance"
+    },
+    "language_id": {
+      "type": "integer",
+      "description": "ID of the language the post is written in"
+    },
+    "featured_community": {
+      "type": "boolean",
+      "description": "Whether the post is pinned to the community"
+    },
+    "featured_local": {
+      "type": "boolean",
+      "description": "Whether the post is pinned to the local instance feed"
+    },
+    "thumbnail_url": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "URL of the post's thumbnail image"
+    },
+    "embed_title": {
+      "type": ["string", "null"],
+      "description": "Title extracted from embedded URL"
+    },
+    "embed_description": {
+      "type": ["string", "null"],
+      "description": "Description extracted from embedded URL"
+    },
+    "embed_video_url": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "Video URL extracted from embedded URL"
+    }
+  },
+  "additionalProperties": false
+}

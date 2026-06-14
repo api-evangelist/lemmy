@@ -1,0 +1,25 @@
+{
+  "title": "Login to Lemmy",
+  "description": "Example of authenticating with a Lemmy instance to obtain a JWT bearer token.",
+  "request": {
+    "method": "POST",
+    "url": "https://lemmy.world/api/v4/account/auth/login",
+    "headers": {
+      "Content-Type": "application/json"
+    },
+    "body": {
+      "username_or_email": "example_user",
+      "password": "your_password_here",
+      "totp_2fa_token": null
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "jwt": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NSIsImlzcyI6ImxlbW15LndvcmxkIiwiaWF0IjoxNzAyMDAwMDAwfQ.example",
+      "registration_created": false,
+      "verify_email_sent": false
+    }
+  },
+  "notes": "Store the JWT token and include it as an Authorization: Bearer <token> header in subsequent authenticated requests. Tokens do not expire but are invalidated on logout."
+}

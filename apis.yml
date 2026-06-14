@@ -55,6 +55,24 @@ apis:
         url: https://github.com/LemmyNet/lemmy
       - type: GitHubRepository
         url: https://github.com/LemmyNet/lemmy-js-client
+      - type: OpenAPI
+        url: openapi/openapi.yml
+      - type: JSONSchema
+        url: json-schema/post.json
+      - type: JSONSchema
+        url: json-schema/comment.json
+      - type: JSONSchema
+        url: json-schema/community.json
+      - type: JSONLDContext
+        url: json-ld/lemmy-context.jsonld
+      - type: Vocabulary
+        url: vocabulary/lemmy-vocabulary.yml
+      - type: Example
+        url: examples/login.json
+      - type: Example
+        url: examples/create-post.json
+      - type: Example
+        url: examples/search.json
       - type: RateLimits
         url: rate-limits/lemmy-rate-limits.yml
       - type: Plans

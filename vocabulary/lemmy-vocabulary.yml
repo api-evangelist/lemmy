@@ -1,0 +1,290 @@
+name: Lemmy REST API Vocabulary
+description: >-
+  Core vocabulary and terminology used in the Lemmy REST API, including resource
+  types, enumeration values, and conceptual terms for the federated link
+  aggregator platform.
+baseUrl: https://join-lemmy.org/ns#
+version: '4.0'
+
+resources:
+  - name: Post
+    description: >-
+      A submission in a community, which may be a link, text post, or image.
+      Posts are the primary content unit in Lemmy. Each post belongs to exactly
+      one community and was authored by one user.
+    properties:
+      - name: id
+        type: integer
+        description: Unique numeric identifier for the post on this instance
+      - name: name
+        type: string
+        description: The title of the post (max 200 characters)
+      - name: url
+        type: uri
+        description: Optional external link URL for link posts
+      - name: body
+        type: string
+        description: Optional text body in Markdown format
+      - name: creator_id
+        type: integer
+        description: ID of the person who created the post
+      - name: community_id
+        type: integer
+        description: ID of the community the post belongs to
+      - name: nsfw
+        type: boolean
+        description: Whether the post is marked Not Safe For Work
+      - name: locked
+        type: boolean
+        description: Whether new comments are locked on the post
+      - name: featured_community
+        type: boolean
+        description: Whether the post is pinned in its community
+      - name: featured_local
+        type: boolean
+        description: Whether the post is pinned on the instance front page
+      - name: ap_id
+        type: uri
+        description: ActivityPub identifier for federation across instances
+
+  - name: Comment
+    description: >-
+      A response to a post or another comment. Comments support threaded replies
+      tracked via a dot-delimited path. Each comment belongs to one post and
+      was authored by one person.
+    properties:
+      - name: id
+        type: integer
+        description: Unique numeric identifier for the comment
+      - name: content
+        type: string
+        description: The text content of the comment in Markdown format
+      - name: post_id
+        type: integer
+        description: ID of the post this comment belongs to
+      - name: path
+        type: string
+        description: >-
+          Dot-delimited ancestor chain of comment IDs (e.g., "0.1.5.7")
+          used for building threaded comment trees
+      - name: distinguished
+        type: boolean
+        description: Whether the comment is highlighted by a moderator
+      - name: ap_id
+        type: uri
+        description: ActivityPub identifier for federation
+
+  - name: Community
+    description: >-
+      A topical group where users post and discuss content. Equivalent to a
+      subreddit or forum. Communities have moderators, and can be followed by
+      users across federated instances via ActivityPub.
+    properties:
+      - name: id
+        type: integer
+        description: Unique numeric identifier for the community
+      - name: name
+        type: string
+        description: Short lowercase slug name (e.g., "rust", "privacy")
+      - name: title
+        type: string
+        description: Human-readable display name
+      - name: description
+        type: string
+        description: Sidebar text in Markdown format
+      - name: actor_id
+        type: uri
+        description: ActivityPub actor URL for federation
+      - name: visibility
+        type: string
+        description: Either "Public" or "LocalOnly"
+      - name: posting_restricted_to_mods
+        type: boolean
+        description: If true, only moderators may create posts
+
+  - name: Person
+    description: >-
+      A user account on a Lemmy instance. Persons can be local (on this
+      instance) or remote (federated from another instance). They have profiles
+      including display names, bios, and avatars.
+    properties:
+      - name: id
+        type: integer
+        description: Unique numeric identifier for the person
+      - name: name
+        type: string
+        description: Login username (lowercase)
+      - name: display_name
+        type: string
+        description: Optional display name shown in the UI
+      - name: actor_id
+        type: uri
+        description: ActivityPub actor URL for federation
+      - name: bio
+        type: string
+        description: User biography in Markdown format
+      - name: bot_account
+        type: boolean
+        description: Whether this account is marked as a bot
+
+  - name: Site
+    description: >-
+      The top-level configuration and metadata for a Lemmy instance. Every
+      instance has one site object describing its name, description, policies,
+      and administrative settings.
+    properties:
+      - name: id
+        type: integer
+        description: Unique identifier (always 1 per instance)
+      - name: name
+        type: string
+        description: The name of this Lemmy instance
+      - name: sidebar
+        type: string
+        description: Sidebar description in Markdown format
+      - name: private_instance
+        type: boolean
+        description: Whether this instance is restricted to registered users
+
+  - name: Instance
+    description: >-
+      A record of another Lemmy (or compatible Fediverse) instance that this
+      instance knows about through federation. Used for allow/block lists.
+    properties:
+      - name: id
+        type: integer
+        description: Unique identifier for the instance record
+      - name: domain
+        type: string
+        description: Domain name of the instance (e.g., "lemmy.world")
+      - name: software
+        type: string
+        description: Software name reported by the instance (e.g., "lemmy")
+      - name: version
+        type: string
+        description: Software version reported by the instance
+
+enumerations:
+  - name: SortType
+    description: Available sort orders for listing posts or communities
+    values:
+      - Active
+      - Hot
+      - New
+      - Old
+      - TopDay
+      - TopWeek
+      - TopMonth
+      - TopYear
+      - TopAll
+      - MostComments
+      - NewComments
+      - TopHour
+      - TopSixHour
+      - TopTwelveHour
+      - TopThreeMonths
+      - TopSixMonths
+      - TopNineMonths
+      - Controversial
+      - Scaled
+
+  - name: CommentSortType
+    description: Available sort orders for listing comments
+    values:
+      - Hot
+      - Top
+      - New
+      - Old
+      - Controversial
+
+  - name: ListingType
+    description: Scope filter for listing posts or communities
+    values:
+      - All
+      - Local
+      - Subscribed
+      - ModeratorView
+
+  - name: SubscribedType
+    description: User's subscription status relative to a community
+    values:
+      - Subscribed
+      - NotSubscribed
+      - Pending
+
+  - name: PostFeatureType
+    description: Scope at which a post can be featured/pinned
+    values:
+      - Local
+      - Community
+
+  - name: RegistrationMode
+    description: How the instance handles new user registrations
+    values:
+      - Closed
+      - RequireApplication
+      - Open
+
+  - name: SearchType
+    description: Content type to target when searching
+    values:
+      - All
+      - Comments
+      - Posts
+      - Communities
+      - Users
+      - Url
+
+  - name: CommunityVisibility
+    description: Who can see and interact with a community
+    values:
+      - Public
+      - LocalOnly
+
+  - name: PostListingMode
+    description: Display mode for post listings
+    values:
+      - List
+      - Card
+      - SmallCard
+
+concepts:
+  - name: Federation
+    description: >-
+      Lemmy implements the ActivityPub protocol to federate with other instances
+      and compatible Fediverse software (Mastodon, PeerTube, Friendica). Posts,
+      comments, and user actions propagate across federated instances.
+
+  - name: Instance
+    description: >-
+      A self-hosted deployment of the Lemmy software. Each instance has its own
+      domain, users, communities, and moderation policies. Instances federate
+      with each other unless explicitly blocked.
+
+  - name: JWT Authentication
+    description: >-
+      Lemmy uses JSON Web Tokens (JWT) for API authentication. Clients obtain
+      a token via POST /api/v4/account/auth/login and include it as
+      Authorization: Bearer <token> in subsequent requests.
+
+  - name: ActivityPub
+    description: >-
+      The W3C standard protocol Lemmy uses for federation. Every community,
+      user, post, and comment has an ap_id URL following ActivityPub conventions.
+
+  - name: Modlog
+    description: >-
+      A public audit log of moderator actions across communities, including
+      post removals, bans, locks, and other moderation events.
+
+  - name: Rate Limiting
+    description: >-
+      Each Lemmy instance enforces configurable rate limits per action type.
+      Common defaults: 50 comments per 10 minutes, 100 searches per 10 minutes,
+      5 registrations per day. Limits are set in the instance configuration.
+
+  - name: NSFW
+    description: >-
+      Not Safe For Work — content or communities marked with this flag contain
+      adult material. Instances and users can configure whether to show NSFW
+      content.

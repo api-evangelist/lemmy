@@ -1,0 +1,85 @@
+{
+  "title": "Search Lemmy Content",
+  "description": "Example of searching for posts and communities across Lemmy's federated network.",
+  "request": {
+    "method": "GET",
+    "url": "https://lemmy.world/api/v4/search?q=rust+programming&type_=Posts&sort=Hot&listing_type=All&page=1&limit=10",
+    "headers": {
+      "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.example"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "type_": "Posts",
+      "comments": [],
+      "posts": [
+        {
+          "post": {
+            "id": 1234567,
+            "name": "Why Rust is becoming the language of choice for systems programming",
+            "url": "https://example.com/rust-systems-programming",
+            "body": null,
+            "creator_id": 99001,
+            "community_id": 456,
+            "removed": false,
+            "locked": false,
+            "published": "2026-06-12T08:00:00.000000Z",
+            "updated": null,
+            "deleted": false,
+            "nsfw": false,
+            "ap_id": "https://programming.dev/post/1234567",
+            "local": false,
+            "language_id": 37,
+            "featured_community": false,
+            "featured_local": false
+          },
+          "creator": {
+            "id": 99001,
+            "name": "rust_fan",
+            "display_name": "Rust Fan",
+            "avatar": "https://programming.dev/pictrs/image/avatar.webp",
+            "banned": false,
+            "published": "2023-01-15T10:00:00.000000Z",
+            "actor_id": "https://programming.dev/u/rust_fan",
+            "local": false,
+            "bot_account": false,
+            "deleted": false,
+            "instance_id": 42
+          },
+          "community": {
+            "id": 456,
+            "name": "rust",
+            "title": "Rust Programming Language",
+            "removed": false,
+            "published": "2023-05-01T00:00:00.000000Z",
+            "deleted": false,
+            "nsfw": false,
+            "actor_id": "https://programming.dev/c/rust",
+            "local": false,
+            "hidden": false,
+            "posting_restricted_to_mods": false,
+            "instance_id": 42,
+            "visibility": "Public"
+          },
+          "counts": {
+            "post_id": 1234567,
+            "comments": 47,
+            "score": 312,
+            "upvotes": 320,
+            "downvotes": 8,
+            "published": "2026-06-12T08:00:00.000000Z"
+          },
+          "subscribed": "NotSubscribed",
+          "saved": false,
+          "read": false,
+          "my_vote": null,
+          "unread_comments": 47,
+          "banned_from_community": false
+        }
+      ],
+      "communities": [],
+      "users": []
+    }
+  }
+}

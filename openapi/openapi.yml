@@ -1,0 +1,1871 @@
+openapi: 3.1.0
+info:
+  title: Lemmy REST API
+  description: >-
+    The Lemmy REST API provides programmatic access to all core platform
+    features of Lemmy, a free, open-source, self-hostable federated link
+    aggregator and discussion platform. Developers can create and manage posts,
+    comments, communities, and user accounts; vote on content; follow
+    communities; search across the federated network; moderate communities;
+    send private messages; and administer instances. Authentication uses JWT
+    bearer tokens obtained via the login endpoint. The API is versioned at
+    /api/v4/ and available on any public Lemmy instance.
+  version: '4.0.0'
+  license:
+    name: AGPL-3.0
+    url: https://github.com/LemmyNet/lemmy/blob/main/LICENSE
+  contact:
+    url: https://join-lemmy.org/docs/
+externalDocs:
+  description: Lemmy Documentation
+  url: https://join-lemmy.org/docs/
+servers:
+  - url: https://lemmy.world/api/v4
+    description: Lemmy.world (largest public instance)
+  - url: https://{instance}/api/v4
+    description: Any Lemmy instance
+    variables:
+      instance:
+        default: lemmy.world
+        description: The hostname of a Lemmy instance
+
+security:
+  - bearerAuth: []
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    PostId:
+      type: integer
+      description: Unique identifier for a post
+
+    CommentId:
+      type: integer
+      description: Unique identifier for a comment
+
+    CommunityId:
+      type: integer
+      description: Unique identifier for a community
+
+    PersonId:
+      type: integer
+      description: Unique identifier for a person/user
+
+    LanguageId:
+      type: integer
+      description: Unique identifier for a language
+
+    Post:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/PostId'
+        name:
+          type: string
+        url:
+          type: string
+          format: uri
+          nullable: true
+        body:
+          type: string
+          nullable: true
+        creator_id:
+          $ref: '#/components/schemas/PersonId'
+        community_id:
+          $ref: '#/components/schemas/CommunityId'
+        removed:
+          type: boolean
+        locked:
+          type: boolean
+        published:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+          nullable: true
+        deleted:
+          type: boolean
+        nsfw:
+          type: boolean
+        ap_id:
+          type: string
+        local:
+          type: boolean
+        language_id:
+          $ref: '#/components/schemas/LanguageId'
+        featured_community:
+          type: boolean
+        featured_local:
+          type: boolean
+
+    Comment:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/CommentId'
+        creator_id:
+          $ref: '#/components/schemas/PersonId'
+        post_id:
+          $ref: '#/components/schemas/PostId'
+        content:
+          type: string
+        removed:
+          type: boolean
+        published:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+          nullable: true
+        deleted:
+          type: boolean
+        ap_id:
+          type: string
+        local:
+          type: boolean
+        path:
+          type: string
+        distinguished:
+          type: boolean
+        language_id:
+          $ref: '#/components/schemas/LanguageId'
+
+    Community:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/CommunityId'
+        name:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+          nullable: true
+        removed:
+          type: boolean
+        published:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+          nullable: true
+        deleted:
+          type: boolean
+        nsfw:
+          type: boolean
+        actor_id:
+          type: string
+        local:
+          type: boolean
+        icon:
+          type: string
+          format: uri
+          nullable: true
+        banner:
+          type: string
+          format: uri
+          nullable: true
+        hidden:
+          type: boolean
+        posting_restricted_to_mods:
+          type: boolean
+        instance_id:
+          type: integer
+        visibility:
+          type: string
+          enum: [Public, LocalOnly]
+
+    Person:
+      type: object
+      properties:
+        id:
+          $ref: '#/components/schemas/PersonId'
+        name:
+          type: string
+        display_name:
+          type: string
+          nullable: true
+        avatar:
+          type: string
+          format: uri
+          nullable: true
+        banned:
+          type: boolean
+        published:
+          type: string
+          format: date-time
+        updated:
+          type: string
+          format: date-time
+          nullable: true
+        actor_id:
+          type: string
+        bio:
+          type: string
+          nullable: true
+        local:
+          type: boolean
+        banner:
+          type: string
+          format: uri
+          nullable: true
+        deleted:
+          type: boolean
+        bot_account:
+          type: boolean
+        ban_expires:
+          type: string
+          format: date-time
+          nullable: true
+        instance_id:
+          type: integer
+
+    PostResponse:
+      type: object
+      properties:
+        post_view:
+          type: object
+          description: The post view with associated metadata
+
+    CommentResponse:
+      type: object
+      properties:
+        comment_view:
+          type: object
+          description: The comment view with associated metadata
+        recipient_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/PersonId'
+
+    CommunityResponse:
+      type: object
+      properties:
+        community_view:
+          type: object
+          description: The community view with associated metadata
+        discussion_languages:
+          type: array
+          items:
+            $ref: '#/components/schemas/LanguageId'
+
+    LoginResponse:
+      type: object
+      properties:
+        jwt:
+          type: string
+          nullable: true
+          description: JWT token for authentication (null if email verification required)
+        registration_created:
+          type: boolean
+          description: Whether a registration application was created
+        verify_email_sent:
+          type: boolean
+          description: Whether a verification email was sent
+
+    ErrorResponse:
+      type: object
+      properties:
+        error:
+          type: string
+          description: Error message key
+        message:
+          type: string
+          nullable: true
+          description: Human-readable error message
+
+    SortType:
+      type: string
+      enum:
+        - Active
+        - Hot
+        - New
+        - Old
+        - TopDay
+        - TopWeek
+        - TopMonth
+        - TopYear
+        - TopAll
+        - MostComments
+        - NewComments
+        - TopHour
+        - TopSixHour
+        - TopTwelveHour
+        - TopThreeMonths
+        - TopSixMonths
+        - TopNineMonths
+        - Controversial
+        - Scaled
+
+    ListingType:
+      type: string
+      enum:
+        - All
+        - Local
+        - Subscribed
+        - ModeratorView
+
+    CommentSortType:
+      type: string
+      enum:
+        - Hot
+        - Top
+        - New
+        - Old
+        - Controversial
+
+paths:
+  /site:
+    get:
+      operationId: getSite
+      summary: Get site information
+      description: Returns site information including configuration, admins, and statistics.
+      tags:
+        - Site
+      security: []
+      responses:
+        '200':
+          description: Site information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  site_view:
+                    type: object
+                  admins:
+                    type: array
+                    items:
+                      type: object
+                  version:
+                    type: string
+                  my_user:
+                    type: object
+                    nullable: true
+                  all_languages:
+                    type: array
+                    items:
+                      type: object
+                  discussion_languages:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LanguageId'
+    post:
+      operationId: createSite
+      summary: Create the site
+      description: Create the site (used during initial setup). Requires admin.
+      tags:
+        - Site
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+              properties:
+                name:
+                  type: string
+                sidebar:
+                  type: string
+                  nullable: true
+                description:
+                  type: string
+                  nullable: true
+                icon:
+                  type: string
+                  nullable: true
+                banner:
+                  type: string
+                  nullable: true
+                enable_downvotes:
+                  type: boolean
+                  nullable: true
+                enable_nsfw:
+                  type: boolean
+                  nullable: true
+                community_creation_admin_only:
+                  type: boolean
+                  nullable: true
+                require_email_verification:
+                  type: boolean
+                  nullable: true
+                require_application:
+                  type: boolean
+                  nullable: true
+                application_question:
+                  type: string
+                  nullable: true
+                private_instance:
+                  type: boolean
+                  nullable: true
+                default_theme:
+                  type: string
+                  nullable: true
+                default_post_listing_type:
+                  $ref: '#/components/schemas/ListingType'
+                legal_information:
+                  type: string
+                  nullable: true
+                default_post_sort_type:
+                  $ref: '#/components/schemas/SortType'
+      responses:
+        '200':
+          description: Site created
+          content:
+            application/json:
+              schema:
+                type: object
+    put:
+      operationId: editSite
+      summary: Edit site settings
+      description: Update site-level settings. Requires admin.
+      tags:
+        - Site
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  nullable: true
+                sidebar:
+                  type: string
+                  nullable: true
+                description:
+                  type: string
+                  nullable: true
+                enable_downvotes:
+                  type: boolean
+                  nullable: true
+                enable_nsfw:
+                  type: boolean
+                  nullable: true
+      responses:
+        '200':
+          description: Site updated
+
+  /modlog:
+    get:
+      operationId: getModLog
+      summary: Get moderation log
+      description: Retrieve the moderation log for admin/mod actions.
+      tags:
+        - Site
+      security: []
+      parameters:
+        - name: mod_person_id
+          in: query
+          schema:
+            $ref: '#/components/schemas/PersonId'
+        - name: community_id
+          in: query
+          schema:
+            $ref: '#/components/schemas/CommunityId'
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Moderation log entries
+
+  /search:
+    get:
+      operationId: search
+      summary: Search for content
+      description: Search posts, comments, communities, and users across the federated network.
+      tags:
+        - Search
+      security: []
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: community_id
+          in: query
+          schema:
+            $ref: '#/components/schemas/CommunityId'
+        - name: community_name
+          in: query
+          schema:
+            type: string
+        - name: creator_id
+          in: query
+          schema:
+            $ref: '#/components/schemas/PersonId'
+        - name: type_
+          in: query
+          schema:
+            type: string
+            enum: [All, Comments, Posts, Communities, Users, Url]
+        - name: sort
+          in: query
+          schema:
+            $ref: '#/components/schemas/SortType'
+        - name: listing_type
+          in: query
+          schema:
+            $ref: '#/components/schemas/ListingType'
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Search results
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  type_:
+                    type: string
+                  comments:
+                    type: array
+                    items:
+                      type: object
+                  posts:
+                    type: array
+                    items:
+                      type: object
+                  communities:
+                    type: array
+                    items:
+                      type: object
+                  users:
+                    type: array
+                    items:
+                      type: object
+
+  /resolve_object:
+    get:
+      operationId: resolveObject
+      summary: Resolve a federated object by URL
+      description: Fetch a remote ActivityPub object by URL, causing the instance to fetch and cache it.
+      tags:
+        - Federation
+      parameters:
+        - name: q
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uri
+      responses:
+        '200':
+          description: Resolved object
+
+  /community:
+    get:
+      operationId: getCommunity
+      summary: Get community details
+      description: Retrieve information about a specific community.
+      tags:
+        - Community
+      security: []
+      parameters:
+        - name: id
+          in: query
+          schema:
+            $ref: '#/components/schemas/CommunityId'
+        - name: name
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Community information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommunityResponse'
+    post:
+      operationId: createCommunity
+      summary: Create a community
+      description: Create a new community on this instance.
+      tags:
+        - Community
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - title
+              properties:
+                name:
+                  type: string
+                title:
+                  type: string
+                description:
+                  type: string
+                  nullable: true
+                icon:
+                  type: string
+                  nullable: true
+                banner:
+                  type: string
+                  nullable: true
+                nsfw:
+                  type: boolean
+                  nullable: true
+                posting_restricted_to_mods:
+                  type: boolean
+                  nullable: true
+                discussion_languages:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/LanguageId'
+                  nullable: true
+                visibility:
+                  type: string
+                  enum: [Public, LocalOnly]
+                  nullable: true
+      responses:
+        '200':
+          description: Community created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommunityResponse'
+    put:
+      operationId: editCommunity
+      summary: Edit a community
+      description: Update an existing community. Requires mod or admin.
+      tags:
+        - Community
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - community_id
+              properties:
+                community_id:
+                  $ref: '#/components/schemas/CommunityId'
+                title:
+                  type: string
+                  nullable: true
+                description:
+                  type: string
+                  nullable: true
+                nsfw:
+                  type: boolean
+                  nullable: true
+                posting_restricted_to_mods:
+                  type: boolean
+                  nullable: true
+      responses:
+        '200':
+          description: Community updated
+    delete:
+      operationId: deleteCommunity
+      summary: Delete a community
+      description: Delete a community. Requires community creator or admin.
+      tags:
+        - Community
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - community_id
+                - deleted
+              properties:
+                community_id:
+                  $ref: '#/components/schemas/CommunityId'
+                deleted:
+                  type: boolean
+      responses:
+        '200':
+          description: Community deleted/restored
+
+  /community/list:
+    get:
+      operationId: listCommunities
+      summary: List communities
+      description: List communities available on this instance or across the network.
+      tags:
+        - Community
+      security: []
+      parameters:
+        - name: type_
+          in: query
+          schema:
+            $ref: '#/components/schemas/ListingType'
+        - name: sort
+          in: query
+          schema:
+            type: string
+            enum: [Active, Hot, New, Old, TopDay, TopWeek, TopMonth, TopYear, TopAll, MostComments, NewComments, TopHour, TopSixHour, TopTwelveHour, TopThreeMonths, TopSixMonths, TopNineMonths]
+        - name: show_nsfw
+          in: query
+          schema:
+            type: boolean
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of communities
+
+  /community/follow:
+    post:
+      operationId: followCommunity
+      summary: Follow or unfollow a community
+      description: Subscribe or unsubscribe from a community.
+      tags:
+        - Community
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - community_id
+                - follow
+              properties:
+                community_id:
+                  $ref: '#/components/schemas/CommunityId'
+                follow:
+                  type: boolean
+      responses:
+        '200':
+          description: Follow status updated
+
+  /community/random:
+    get:
+      operationId: getRandomCommunity
+      summary: Get a random community
+      description: Returns a random community from the instance.
+      tags:
+        - Community
+      security: []
+      responses:
+        '200':
+          description: A random community
+
+  /post:
+    get:
+      operationId: getPost
+      summary: Get a post
+      description: Retrieve a specific post by ID.
+      tags:
+        - Post
+      security: []
+      parameters:
+        - name: id
+          in: query
+          schema:
+            $ref: '#/components/schemas/PostId'
+        - name: comment_id
+          in: query
+          schema:
+            $ref: '#/components/schemas/CommentId'
+      responses:
+        '200':
+          description: Post details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostResponse'
+    post:
+      operationId: createPost
+      summary: Create a post
+      description: Create a new post in a community.
+      tags:
+        - Post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - name
+                - community_id
+              properties:
+                name:
+                  type: string
+                community_id:
+                  $ref: '#/components/schemas/CommunityId'
+                url:
+                  type: string
+                  format: uri
+                  nullable: true
+                body:
+                  type: string
+                  nullable: true
+                honeypot:
+                  type: string
+                  nullable: true
+                nsfw:
+                  type: boolean
+                  nullable: true
+                language_id:
+                  $ref: '#/components/schemas/LanguageId'
+                custom_thumbnail:
+                  type: string
+                  nullable: true
+                tags:
+                  type: array
+                  items:
+                    type: integer
+                  nullable: true
+      responses:
+        '200':
+          description: Post created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostResponse'
+    put:
+      operationId: editPost
+      summary: Edit a post
+      description: Update an existing post. Only the post creator can edit.
+      tags:
+        - Post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - post_id
+              properties:
+                post_id:
+                  $ref: '#/components/schemas/PostId'
+                name:
+                  type: string
+                  nullable: true
+                url:
+                  type: string
+                  format: uri
+                  nullable: true
+                body:
+                  type: string
+                  nullable: true
+                nsfw:
+                  type: boolean
+                  nullable: true
+                language_id:
+                  $ref: '#/components/schemas/LanguageId'
+      responses:
+        '200':
+          description: Post updated
+    delete:
+      operationId: deletePost
+      summary: Delete a post
+      description: Delete or restore a post. Requires post creator.
+      tags:
+        - Post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - post_id
+                - deleted
+              properties:
+                post_id:
+                  $ref: '#/components/schemas/PostId'
+                deleted:
+                  type: boolean
+      responses:
+        '200':
+          description: Post deleted/restored
+
+  /post/list:
+    get:
+      operationId: listPosts
+      summary: List posts
+      description: Retrieve a paginated list of posts filtered by listing type, sort, community, and more.
+      tags:
+        - Post
+      security: []
+      parameters:
+        - name: type_
+          in: query
+          schema:
+            $ref: '#/components/schemas/ListingType'
+        - name: sort
+          in: query
+          schema:
+            $ref: '#/components/schemas/SortType'
+        - name: community_id
+          in: query
+          schema:
+            $ref: '#/components/schemas/CommunityId'
+        - name: community_name
+          in: query
+          schema:
+            type: string
+        - name: saved_only
+          in: query
+          schema:
+            type: boolean
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          schema:
+            type: integer
+        - name: show_nsfw
+          in: query
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: List of posts
+
+  /post/like:
+    post:
+      operationId: likePost
+      summary: Vote on a post
+      description: Upvote or downvote a post (score 1, 0, or -1).
+      tags:
+        - Post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - post_id
+                - score
+              properties:
+                post_id:
+                  $ref: '#/components/schemas/PostId'
+                score:
+                  type: integer
+                  enum: [-1, 0, 1]
+      responses:
+        '200':
+          description: Vote recorded
+
+  /post/save:
+    put:
+      operationId: savePost
+      summary: Save or unsave a post
+      description: Bookmark/unbookmark a post for the current user.
+      tags:
+        - Post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - post_id
+                - save
+              properties:
+                post_id:
+                  $ref: '#/components/schemas/PostId'
+                save:
+                  type: boolean
+      responses:
+        '200':
+          description: Save status updated
+
+  /post/report:
+    post:
+      operationId: createPostReport
+      summary: Report a post
+      description: Submit a report for a post to the instance moderators.
+      tags:
+        - Post
+        - Reports
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - post_id
+                - reason
+              properties:
+                post_id:
+                  $ref: '#/components/schemas/PostId'
+                reason:
+                  type: string
+      responses:
+        '200':
+          description: Report submitted
+
+  /comment:
+    get:
+      operationId: getComment
+      summary: Get a comment
+      description: Retrieve a specific comment by ID.
+      tags:
+        - Comment
+      security: []
+      parameters:
+        - name: id
+          in: query
+          required: true
+          schema:
+            $ref: '#/components/schemas/CommentId'
+      responses:
+        '200':
+          description: Comment details
+    post:
+      operationId: createComment
+      summary: Create a comment
+      description: Post a new comment on a post or reply to an existing comment.
+      tags:
+        - Comment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - post_id
+                - content
+              properties:
+                post_id:
+                  $ref: '#/components/schemas/PostId'
+                parent_id:
+                  $ref: '#/components/schemas/CommentId'
+                content:
+                  type: string
+                language_id:
+                  $ref: '#/components/schemas/LanguageId'
+      responses:
+        '200':
+          description: Comment created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CommentResponse'
+    put:
+      operationId: editComment
+      summary: Edit a comment
+      description: Update the content of an existing comment. Requires comment author.
+      tags:
+        - Comment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - comment_id
+              properties:
+                comment_id:
+                  $ref: '#/components/schemas/CommentId'
+                content:
+                  type: string
+                  nullable: true
+                language_id:
+                  $ref: '#/components/schemas/LanguageId'
+      responses:
+        '200':
+          description: Comment updated
+    delete:
+      operationId: deleteComment
+      summary: Delete a comment
+      description: Delete or restore a comment. Requires comment author.
+      tags:
+        - Comment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - comment_id
+                - deleted
+              properties:
+                comment_id:
+                  $ref: '#/components/schemas/CommentId'
+                deleted:
+                  type: boolean
+      responses:
+        '200':
+          description: Comment deleted/restored
+
+  /comment/list:
+    get:
+      operationId: listComments
+      summary: List comments
+      description: Retrieve a paginated list of comments for a post or community.
+      tags:
+        - Comment
+      security: []
+      parameters:
+        - name: type_
+          in: query
+          schema:
+            $ref: '#/components/schemas/ListingType'
+        - name: sort
+          in: query
+          schema:
+            $ref: '#/components/schemas/CommentSortType'
+        - name: post_id
+          in: query
+          schema:
+            $ref: '#/components/schemas/PostId'
+        - name: parent_id
+          in: query
+          schema:
+            $ref: '#/components/schemas/CommentId'
+        - name: community_id
+          in: query
+          schema:
+            $ref: '#/components/schemas/CommunityId'
+        - name: max_depth
+          in: query
+          schema:
+            type: integer
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          schema:
+            type: integer
+        - name: saved_only
+          in: query
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: List of comments
+
+  /comment/like:
+    post:
+      operationId: likeComment
+      summary: Vote on a comment
+      description: Upvote or downvote a comment (score 1, 0, or -1).
+      tags:
+        - Comment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - comment_id
+                - score
+              properties:
+                comment_id:
+                  $ref: '#/components/schemas/CommentId'
+                score:
+                  type: integer
+                  enum: [-1, 0, 1]
+      responses:
+        '200':
+          description: Vote recorded
+
+  /comment/save:
+    put:
+      operationId: saveComment
+      summary: Save or unsave a comment
+      description: Bookmark/unbookmark a comment for the current user.
+      tags:
+        - Comment
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - comment_id
+                - save
+              properties:
+                comment_id:
+                  $ref: '#/components/schemas/CommentId'
+                save:
+                  type: boolean
+      responses:
+        '200':
+          description: Save status updated
+
+  /comment/report:
+    post:
+      operationId: createCommentReport
+      summary: Report a comment
+      description: Submit a report for a comment to the instance moderators.
+      tags:
+        - Comment
+        - Reports
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - comment_id
+                - reason
+              properties:
+                comment_id:
+                  $ref: '#/components/schemas/CommentId'
+                reason:
+                  type: string
+      responses:
+        '200':
+          description: Report submitted
+
+  /private_message:
+    post:
+      operationId: createPrivateMessage
+      summary: Send a private message
+      description: Send a direct private message to another user.
+      tags:
+        - Private Messages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - content
+                - recipient_id
+              properties:
+                content:
+                  type: string
+                recipient_id:
+                  $ref: '#/components/schemas/PersonId'
+      responses:
+        '200':
+          description: Private message sent
+    put:
+      operationId: editPrivateMessage
+      summary: Edit a private message
+      description: Update the content of a private message. Requires message author.
+      tags:
+        - Private Messages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - private_message_id
+                - content
+              properties:
+                private_message_id:
+                  type: integer
+                content:
+                  type: string
+      responses:
+        '200':
+          description: Private message updated
+    delete:
+      operationId: deletePrivateMessage
+      summary: Delete a private message
+      description: Delete a private message. Requires message author.
+      tags:
+        - Private Messages
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - private_message_id
+                - deleted
+              properties:
+                private_message_id:
+                  type: integer
+                deleted:
+                  type: boolean
+      responses:
+        '200':
+          description: Private message deleted/restored
+
+  /account/auth/register:
+    post:
+      operationId: register
+      summary: Register a new account
+      description: Create a new user account on this instance.
+      tags:
+        - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - username
+                - password
+                - password_verify
+                - show_nsfw
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+                  format: password
+                password_verify:
+                  type: string
+                  format: password
+                show_nsfw:
+                  type: boolean
+                email:
+                  type: string
+                  format: email
+                  nullable: true
+                captcha_uuid:
+                  type: string
+                  nullable: true
+                captcha_answer:
+                  type: string
+                  nullable: true
+                honeypot:
+                  type: string
+                  nullable: true
+                answer:
+                  type: string
+                  nullable: true
+                  description: Registration application answer if required
+      responses:
+        '200':
+          description: Registration successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+
+  /account/auth/login:
+    post:
+      operationId: login
+      summary: Login to account
+      description: Authenticate with username/email and password to receive a JWT token.
+      tags:
+        - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - username_or_email
+                - password
+              properties:
+                username_or_email:
+                  type: string
+                password:
+                  type: string
+                  format: password
+                totp_2fa_token:
+                  type: string
+                  nullable: true
+      responses:
+        '200':
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '400':
+          description: Invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /account/auth/logout:
+    post:
+      operationId: logout
+      summary: Logout from account
+      description: Invalidate the current JWT token.
+      tags:
+        - Authentication
+      responses:
+        '200':
+          description: Logout successful
+
+  /account/auth/password_reset:
+    post:
+      operationId: resetPassword
+      summary: Reset password
+      description: Send a password reset email to the account.
+      tags:
+        - Authentication
+      security: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - email
+              properties:
+                email:
+                  type: string
+                  format: email
+      responses:
+        '200':
+          description: Reset email sent
+
+  /account/auth/change_password:
+    put:
+      operationId: changePassword
+      summary: Change account password
+      description: Change password for the authenticated user.
+      tags:
+        - Authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - new_password
+                - new_password_verify
+                - old_password
+              properties:
+                new_password:
+                  type: string
+                  format: password
+                new_password_verify:
+                  type: string
+                  format: password
+                old_password:
+                  type: string
+                  format: password
+      responses:
+        '200':
+          description: Password changed
+
+  /account:
+    get:
+      operationId: getMyUser
+      summary: Get current user details
+      description: Retrieve the currently authenticated user's profile and settings.
+      tags:
+        - Account
+      responses:
+        '200':
+          description: Current user information
+    delete:
+      operationId: deleteAccount
+      summary: Delete account
+      description: Permanently delete the authenticated user's account.
+      tags:
+        - Account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - password
+                - delete_content
+              properties:
+                password:
+                  type: string
+                  format: password
+                delete_content:
+                  type: boolean
+                  description: Whether to delete all posts and comments
+      responses:
+        '200':
+          description: Account deleted
+
+  /account/unread_counts:
+    get:
+      operationId: getUnreadCounts
+      summary: Get unread notification counts
+      description: Returns the count of unread notifications, messages, and mentions.
+      tags:
+        - Account
+      responses:
+        '200':
+          description: Unread counts
+
+  /account/settings/save:
+    put:
+      operationId: saveUserSettings
+      summary: Save user settings
+      description: Update the authenticated user's profile settings and preferences.
+      tags:
+        - Account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                show_nsfw:
+                  type: boolean
+                  nullable: true
+                theme:
+                  type: string
+                  nullable: true
+                default_sort_type:
+                  $ref: '#/components/schemas/SortType'
+                default_listing_type:
+                  $ref: '#/components/schemas/ListingType'
+                interface_language:
+                  type: string
+                  nullable: true
+                avatar:
+                  type: string
+                  nullable: true
+                banner:
+                  type: string
+                  nullable: true
+                display_name:
+                  type: string
+                  nullable: true
+                email:
+                  type: string
+                  format: email
+                  nullable: true
+                bio:
+                  type: string
+                  nullable: true
+                show_avatars:
+                  type: boolean
+                  nullable: true
+                send_notifications_to_email:
+                  type: boolean
+                  nullable: true
+                bot_account:
+                  type: boolean
+                  nullable: true
+                show_bot_accounts:
+                  type: boolean
+                  nullable: true
+                matrix_user_id:
+                  type: string
+                  nullable: true
+      responses:
+        '200':
+          description: Settings saved
+
+  /account/notification/list:
+    get:
+      operationId: listNotifications
+      summary: List notifications
+      description: Retrieve a paginated list of notifications for the authenticated user.
+      tags:
+        - Account
+        - Notifications
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          schema:
+            type: integer
+        - name: unread_only
+          in: query
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: List of notifications
+
+  /account/notification/mark_as_read/all:
+    post:
+      operationId: markAllNotificationsRead
+      summary: Mark all notifications as read
+      description: Mark all pending notifications as read for the authenticated user.
+      tags:
+        - Account
+        - Notifications
+      responses:
+        '200':
+          description: All notifications marked as read
+
+  /person:
+    get:
+      operationId: getPerson
+      summary: Get person details
+      description: Retrieve profile information for a specific user.
+      tags:
+        - Person
+      security: []
+      parameters:
+        - name: person_id
+          in: query
+          schema:
+            $ref: '#/components/schemas/PersonId'
+        - name: username
+          in: query
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Person profile information
+
+  /person/list:
+    get:
+      operationId: listPersons
+      summary: List persons
+      description: List users on the instance (federation endpoint).
+      tags:
+        - Person
+      security: []
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: List of persons
+
+  /federated_instances:
+    get:
+      operationId: getFederatedInstances
+      summary: Get federated instances
+      description: Returns lists of instances that this instance federates with, blocks, or allows.
+      tags:
+        - Federation
+        - Site
+      security: []
+      responses:
+        '200':
+          description: Federated instance lists
+
+  /report/list:
+    get:
+      operationId: listReports
+      summary: List reports
+      description: Retrieve a list of content reports. Requires moderator or admin.
+      tags:
+        - Reports
+      parameters:
+        - name: page
+          in: query
+          schema:
+            type: integer
+        - name: limit
+          in: query
+          schema:
+            type: integer
+        - name: community_id
+          in: query
+          schema:
+            $ref: '#/components/schemas/CommunityId'
+        - name: unresolved_only
+          in: query
+          schema:
+            type: boolean
+      responses:
+        '200':
+          description: List of reports
+
+  /admin/add:
+    post:
+      operationId: addAdmin
+      summary: Add or remove admin
+      description: Grant or revoke admin privileges for a user. Requires admin.
+      tags:
+        - Admin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - person_id
+                - added
+              properties:
+                person_id:
+                  $ref: '#/components/schemas/PersonId'
+                added:
+                  type: boolean
+      responses:
+        '200':
+          description: Admin status updated
+
+  /admin/ban:
+    post:
+      operationId: banFromSite
+      summary: Ban or unban a user from the site
+      description: Prohibit or restore a user's access to this instance. Requires admin.
+      tags:
+        - Admin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - person_id
+                - ban
+              properties:
+                person_id:
+                  $ref: '#/components/schemas/PersonId'
+                ban:
+                  type: boolean
+                remove_data:
+                  type: boolean
+                  nullable: true
+                reason:
+                  type: string
+                  nullable: true
+                expires:
+                  type: integer
+                  nullable: true
+                  description: Unix timestamp for ban expiry
+      responses:
+        '200':
+          description: User ban status updated
+
+  /image:
+    post:
+      operationId: uploadImage
+      summary: Upload an image
+      description: Upload an image file to the instance's image storage.
+      tags:
+        - Images
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              required:
+                - images[]
+              properties:
+                images[]:
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Image uploaded
+
+  /image/{filename}:
+    get:
+      operationId: getImage
+      summary: Get an image
+      description: Retrieve an uploaded image by filename.
+      tags:
+        - Images
+      security: []
+      parameters:
+        - name: filename
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Image file
+
+  /image/proxy:
+    get:
+      operationId: imageProxy
+      summary: Proxy an external image
+      description: Proxy and optionally cache an external image through this instance.
+      tags:
+        - Images
+      security: []
+      parameters:
+        - name: url
+          in: query
+          required: true
+          schema:
+            type: string
+            format: uri
+      responses:
+        '200':
+          description: Proxied image
+
+tags:
+  - name: Site
+    description: Site-level information and configuration
+  - name: Community
+    description: Community management and discovery
+  - name: Post
+    description: Creating and managing posts
+  - name: Comment
+    description: Creating and managing comments
+  - name: Authentication
+    description: Account registration, login, and password management
+  - name: Account
+    description: User account management and settings
+  - name: Person
+    description: User profiles and discovery
+  - name: Private Messages
+    description: Direct messaging between users
+  - name: Reports
+    description: Content reporting and moderation
+  - name: Admin
+    description: Administrative actions
+  - name: Federation
+    description: ActivityPub federation and cross-instance operations
+  - name: Images
+    description: Image upload and retrieval
+  - name: Notifications
+    description: User notifications and alerts
+  - name: Search
+    description: Search across posts, comments, communities, and users

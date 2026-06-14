@@ -1,0 +1,66 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://join-lemmy.org/schema/comment.json",
+  "title": "Comment",
+  "description": "A comment on a Lemmy post, supporting threaded nested replies via path-based hierarchy.",
+  "type": "object",
+  "required": ["id", "creator_id", "post_id", "content", "published"],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique identifier for the comment"
+    },
+    "creator_id": {
+      "type": "integer",
+      "description": "ID of the user who wrote the comment"
+    },
+    "post_id": {
+      "type": "integer",
+      "description": "ID of the post this comment belongs to"
+    },
+    "content": {
+      "type": "string",
+      "description": "Content of the comment (Markdown supported)"
+    },
+    "removed": {
+      "type": "boolean",
+      "description": "Whether the comment was removed by a moderator"
+    },
+    "published": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the comment was published"
+    },
+    "updated": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Timestamp when the comment was last updated"
+    },
+    "deleted": {
+      "type": "boolean",
+      "description": "Whether the comment was deleted by the author"
+    },
+    "ap_id": {
+      "type": "string",
+      "format": "uri",
+      "description": "ActivityPub ID for federation"
+    },
+    "local": {
+      "type": "boolean",
+      "description": "Whether the comment originated on this instance"
+    },
+    "path": {
+      "type": "string",
+      "description": "Dot-delimited path of comment IDs representing the nesting hierarchy (e.g., '0.1.5.7')"
+    },
+    "distinguished": {
+      "type": "boolean",
+      "description": "Whether the comment is highlighted/distinguished by a moderator"
+    },
+    "language_id": {
+      "type": "integer",
+      "description": "ID of the language the comment is written in"
+    }
+  },
+  "additionalProperties": false
+}

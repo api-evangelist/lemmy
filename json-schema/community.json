@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://join-lemmy.org/schema/community.json",
+  "title": "Community",
+  "description": "A Lemmy community (subreddit-equivalent) where posts and discussions are organized.",
+  "type": "object",
+  "required": ["id", "name", "title", "published"],
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Unique identifier for the community"
+    },
+    "name": {
+      "type": "string",
+      "description": "Short identifier name of the community (slug)",
+      "maxLength": 100
+    },
+    "title": {
+      "type": "string",
+      "description": "Display title of the community",
+      "maxLength": 100
+    },
+    "description": {
+      "type": ["string", "null"],
+      "description": "Sidebar description (Markdown supported)"
+    },
+    "removed": {
+      "type": "boolean",
+      "description": "Whether the community was removed by a site admin"
+    },
+    "published": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp when the community was created"
+    },
+    "updated": {
+      "type": ["string", "null"],
+      "format": "date-time",
+      "description": "Timestamp when the community was last updated"
+    },
+    "deleted": {
+      "type": "boolean",
+      "description": "Whether the community was deleted"
+    },
+    "nsfw": {
+      "type": "boolean",
+      "description": "Whether the community is marked as NSFW"
+    },
+    "actor_id": {
+      "type": "string",
+      "format": "uri",
+      "description": "ActivityPub actor ID for federation"
+    },
+    "local": {
+      "type": "boolean",
+      "description": "Whether the community is hosted on this instance"
+    },
+    "icon": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "URL of the community icon image"
+    },
+    "banner": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "URL of the community banner image"
+    },
+    "hidden": {
+      "type": "boolean",
+      "description": "Whether the community is hidden from listings"
+    },
+    "posting_restricted_to_mods": {
+      "type": "boolean",
+      "description": "Whether only moderators can create posts"
+    },
+    "instance_id": {
+      "type": "integer",
+      "description": "ID of the instance hosting this community"
+    },
+    "visibility": {
+      "type": "string",
+      "enum": ["Public", "LocalOnly"],
+      "description": "Visibility scope of the community"
+    }
+  },
+  "additionalProperties": false
+}

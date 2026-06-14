@@ -1,0 +1,91 @@
+{
+  "title": "Create a Link Post",
+  "description": "Example of creating a link post in a Lemmy community via the REST API.",
+  "request": {
+    "method": "POST",
+    "url": "https://lemmy.world/api/v4/post",
+    "headers": {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0NSIsImlzcyI6ImxlbW15LndvcmxkIiwiaWF0IjoxNzAyMDAwMDAwfQ.example"
+    },
+    "body": {
+      "name": "Lemmy reaches 1 million users across the Fediverse",
+      "url": "https://join-lemmy.org/news/",
+      "body": "Exciting news from the Lemmy project — the decentralized platform has reached a major milestone.",
+      "community_id": 14,
+      "nsfw": false,
+      "language_id": 37
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "post_view": {
+        "post": {
+          "id": 4567890,
+          "name": "Lemmy reaches 1 million users across the Fediverse",
+          "url": "https://join-lemmy.org/news/",
+          "body": "Exciting news from the Lemmy project — the decentralized platform has reached a major milestone.",
+          "creator_id": 12345,
+          "community_id": 14,
+          "removed": false,
+          "locked": false,
+          "published": "2026-06-13T12:00:00.000000Z",
+          "updated": null,
+          "deleted": false,
+          "nsfw": false,
+          "ap_id": "https://lemmy.world/post/4567890",
+          "local": true,
+          "language_id": 37,
+          "featured_community": false,
+          "featured_local": false
+        },
+        "creator": {
+          "id": 12345,
+          "name": "example_user",
+          "display_name": "Example User",
+          "avatar": null,
+          "banned": false,
+          "published": "2023-06-10T09:30:00.000000Z",
+          "actor_id": "https://lemmy.world/u/example_user",
+          "local": true,
+          "bot_account": false,
+          "deleted": false,
+          "instance_id": 1
+        },
+        "community": {
+          "id": 14,
+          "name": "lemmy",
+          "title": "Lemmy Support",
+          "removed": false,
+          "published": "2022-08-01T00:00:00.000000Z",
+          "deleted": false,
+          "nsfw": false,
+          "actor_id": "https://lemmy.world/c/lemmy",
+          "local": true,
+          "hidden": false,
+          "posting_restricted_to_mods": false,
+          "instance_id": 1,
+          "visibility": "Public"
+        },
+        "creator_banned_from_community": false,
+        "creator_is_moderator": false,
+        "creator_is_admin": false,
+        "counts": {
+          "post_id": 4567890,
+          "comments": 0,
+          "score": 1,
+          "upvotes": 1,
+          "downvotes": 0,
+          "published": "2026-06-13T12:00:00.000000Z"
+        },
+        "subscribed": "NotSubscribed",
+        "saved": false,
+        "read": false,
+        "my_vote": 1,
+        "unread_comments": 0,
+        "banned_from_community": false
+      }
+    }
+  }
+}
