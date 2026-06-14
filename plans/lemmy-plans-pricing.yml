@@ -1,0 +1,104 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Lemmy
+providerId: lemmy
+created: '2026-06-13'
+modified: '2026-06-13'
+reconciled: true
+tags:
+  - Communities
+  - Federated
+  - Fediverse
+  - Link Aggregator
+  - Open-Source
+  - Social Networks
+description: >-
+  Lemmy is free, open-source software (AGPL-3.0) with no official commercial API pricing tiers.
+  The API is available for free on any public Lemmy instance. Self-hosting is also free; operators
+  pay only their own infrastructure costs. Third-party managed hosting providers such as Elestio
+  offer paid hosting plans starting around $5-10 per month depending on instance size. Rate limits
+  are configured per instance by the instance operator and are not monetized.
+sources:
+  - https://join-lemmy.org/
+  - https://github.com/LemmyNet/lemmy
+  - https://elest.io/open-source/lemmy/resources/plans-and-pricing
+notes: >-
+  Lemmy has no commercial API pricing because it is open-source software. API access is free on
+  all public instances. Self-hosting costs are infrastructure-only. Third-party managed hosting
+  providers charge for the underlying compute, not API calls.
+plans:
+  - id: lemmy-api-free
+    name: Lemmy API — Free (Public Instance)
+    type: free
+    description: >-
+      Free access to the Lemmy REST API on any public Lemmy instance. No subscription, registration
+      fee, or per-call charge applies. Rate limits are set by the instance operator. The largest
+      public instance is lemmy.world with over 193,000 registered users.
+    entries:
+      - label: Free public API access
+        name: free_public
+        type: subscription
+        metric: request
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: JWT authentication via /api/v4/account/auth/login
+      - name: Posts, comments, communities, voting endpoints
+      - name: ActivityPub federation
+      - name: Instance-configured rate limits
+  - id: lemmy-self-hosted
+    name: Lemmy — Self-Hosted
+    type: free
+    description: >-
+      Run your own Lemmy instance using the open-source software. Infrastructure costs (server,
+      storage, bandwidth) are the operator's responsibility. Docker and Ansible deployment options
+      are provided. Written in Rust for high performance; a single instance supports tens of
+      thousands of users on modest hardware.
+    entries:
+      - label: Software license cost
+        name: oss_license
+        type: one-time
+        metric: install
+        limit: -1
+        timeFrame: forever
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: AGPL-3.0 open-source license
+      - name: Full API access on your own instance
+      - name: Configure your own rate limits
+      - name: Join or isolate from the Fediverse
+  - id: lemmy-managed-hosting
+    name: Lemmy — Managed Hosting (Third-Party)
+    type: paid
+    description: >-
+      Third-party managed hosting providers such as Elestio offer Lemmy hosting for a monthly fee
+      covering compute, storage, and managed deployment. Pricing varies by provider and selected
+      instance size. Elestio uses hourly credit billing across multiple cloud providers (Hetzner,
+      DigitalOcean, AWS Lightsail, Vultr, Linode, Scaleway, Netcup).
+    entries:
+      - label: Managed hosting (entry tier)
+        name: managed_entry
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: 'varies by provider and instance size'
+        userMultiplied: false
+    elements:
+      - name: Managed deployment and updates
+      - name: Cloud provider choice
+      - name: Storage pricing at ~$0.15/GB/month (Elestio)
+      - name: Free trial credits available ($20 for 3 days on Elestio)
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com

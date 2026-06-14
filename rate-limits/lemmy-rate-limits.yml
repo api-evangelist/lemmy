@@ -1,0 +1,91 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Lemmy
+providerId: lemmy
+created: '2026-06-13'
+modified: '2026-06-13'
+reconciled: true
+tags:
+  - Communities
+  - Federated
+  - Fediverse
+  - Rate Limiting
+  - Social Networks
+description: >-
+  Lemmy rate limits are configured per instance by the instance administrator and enforced at the
+  application layer. Default values observed from public instances (including lemmy.world running
+  v0.19.18) cover message sending, posting, registration, image uploads, comments, and search.
+  There is no global Lemmy rate limit; each instance operator may tune or disable limits.
+  Exceeded limits return HTTP 429 Too Many Requests.
+sources:
+  - https://lemmy.world/api/v3/site
+  - https://github.com/LemmyNet/lemmy/issues/290
+  - https://github.com/LemmyNet/lemmy
+notes: >-
+  Rate limits are instance-configurable. The values below reflect defaults observed on lemmy.world
+  (v0.19.18). The legacy v3 API is still live on many instances; v4 is the current API version.
+  All limits apply per IP address unless the instance configures per-user limits.
+responseCodes:
+  throttled: 429
+limits:
+  - name: Comments
+    scope: per-ip
+    metric: requests
+    limit: 50
+    period: 600
+    periodUnit: seconds
+    description: Maximum 50 comment creation requests per 10 minutes per IP address.
+  - name: Search
+    scope: per-ip
+    metric: requests
+    limit: 100
+    period: 600
+    periodUnit: seconds
+    description: Maximum 100 search requests per 10 minutes per IP address.
+  - name: Messages (private messages)
+    scope: per-ip
+    metric: requests
+    limit: 30
+    period: 60
+    periodUnit: seconds
+    description: Maximum 30 private message requests per 60 seconds per IP address. (Some instances
+      set this to 999 per period indicating relaxed or disabled limits.)
+  - name: Posts
+    scope: per-ip
+    metric: requests
+    limit: 30
+    period: 60
+    periodUnit: seconds
+    description: Maximum 30 post creation requests per 60 seconds per IP address. (Instance-variable.)
+  - name: Registration
+    scope: per-ip
+    metric: requests
+    limit: 5
+    period: 86400
+    periodUnit: seconds
+    description: Maximum 5 account registration requests per day (86400 seconds) per IP address.
+  - name: Image Uploads
+    scope: per-ip
+    metric: requests
+    limit: 50
+    period: 3600
+    periodUnit: seconds
+    description: Maximum 50 image upload requests per hour per IP address.
+policies:
+  - name: Instance-Configurable Limits
+    description: All rate limits are set in the instance's configuration. Operators may increase,
+      decrease, or effectively disable limits by setting high values. There is no enforced global
+      minimum or maximum.
+  - name: HTTP 429 on Throttle
+    description: When a rate limit is exceeded, Lemmy returns HTTP 429 Too Many Requests. Clients
+      should apply exponential backoff before retrying.
+  - name: JWT Authentication Recommended
+    description: Authenticated requests (JWT bearer token) may have different or more lenient rate
+      limits at the instance operator's discretion compared to unauthenticated requests.
+  - name: Registration Captcha
+    description: New account registration is subject to CAPTCHA on many public instances (e.g.,
+      lemmy.world uses hard-difficulty CAPTCHA) in addition to the rate limit.
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
