@@ -11,7 +11,7 @@ description: >-
   JWT bearer tokens obtained via the login endpoint. The software is licensed under AGPL-3.0 and
   written in Rust with an Actix web framework backend.
 type: Index
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 tags:
   - Communities
   - Federated
