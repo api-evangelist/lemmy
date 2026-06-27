@@ -67,11 +67,11 @@ apis:
         url: json-ld/lemmy-context.jsonld
       - type: Vocabulary
         url: vocabulary/lemmy-vocabulary.yml
-      - type: Example
+      - type: Examples
         url: examples/login.json
-      - type: Example
+      - type: Examples
         url: examples/create-post.json
-      - type: Example
+      - type: Examples
         url: examples/search.json
       - type: RateLimits
         url: rate-limits/lemmy-rate-limits.yml

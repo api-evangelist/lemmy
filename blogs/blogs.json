@@ -2,6 +2,13 @@
   "repo": "lemmy",
   "feeds": [
     {
+      "source": "https://join-lemmy.org/news/",
+      "feed_url": "https://join-lemmy.org/feed.xml",
+      "title": "",
+      "saved": 0,
+      "method": "discovered"
+    },
+    {
       "source": "https://github.com/LemmyNet/lemmy/blob/main/LICENSE",
       "feed_url": "https://github.com/LemmyNet/lemmy/blob/main/LICENSE",
       "title": "",
@@ -10,5 +17,5 @@
     }
   ],
   "post_count": 0,
-  "fetched": "2026-06-14T20:42:17Z"
+  "fetched": "2026-06-27T12:03:07Z"
 }
