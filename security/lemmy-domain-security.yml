@@ -1,0 +1,26 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: join-lemmy.org
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Oct  4 13:59:52 2026 GMT
+  hsts: false
+- host: lemmy.world
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Sep 23 02:33:53 2026 GMT
+  hsts: false
+domains:
+- domain: join-lemmy.org
+  dnssec: false
+  caa: []
+  spf: true
+  dmarc: false
+- domain: lemmy.world
+  dnssec: true
+  caa: []
+  spf: true
+  dmarc: true
+  dmarc_policy: reject

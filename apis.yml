@@ -80,6 +80,10 @@ apis:
       - type: FinOps
         url: finops/lemmy-finops.yml
 common:
+  - type: DomainSecurity
+    url: security/lemmy-domain-security.yml
+  - type: Authentication
+    url: authentication/lemmy-authentication.yml
   - type: GitHubOrganization
     url: https://github.com/LemmyNet
   - type: Website
