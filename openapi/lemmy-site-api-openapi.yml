@@ -1,0 +1,245 @@
+openapi: 3.1.0
+info:
+  title: Lemmy REST Account Site API
+  description: The Lemmy REST API provides programmatic access to all core platform features of Lemmy, a free, open-source, self-hostable federated link aggregator and discussion platform. Developers can create and manage posts, comments, communities, and user accounts; vote on content; follow communities; search across the federated network; moderate communities; send private messages; and administer instances. Authentication uses JWT bearer tokens obtained via the login endpoint. The API is versioned at /api/v4/ and available on any public Lemmy instance.
+  version: 4.0.0
+  license:
+    name: AGPL-3.0
+    url: https://github.com/LemmyNet/lemmy/blob/main/LICENSE
+  contact:
+    url: https://join-lemmy.org/docs/
+servers:
+- url: https://lemmy.world/api/v4
+  description: Lemmy.world (largest public instance)
+- url: https://{instance}/api/v4
+  description: Any Lemmy instance
+  variables:
+    instance:
+      default: lemmy.world
+      description: The hostname of a Lemmy instance
+security:
+- bearerAuth: []
+tags:
+- name: Site
+  description: Site-level information and configuration
+paths:
+  /site:
+    get:
+      operationId: getSite
+      summary: Get site information
+      description: Returns site information including configuration, admins, and statistics.
+      tags:
+      - Site
+      security: []
+      responses:
+        '200':
+          description: Site information
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  site_view:
+                    type: object
+                  admins:
+                    type: array
+                    items:
+                      type: object
+                  version:
+                    type: string
+                  my_user:
+                    type: object
+                    nullable: true
+                  all_languages:
+                    type: array
+                    items:
+                      type: object
+                  discussion_languages:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/LanguageId'
+    post:
+      operationId: createSite
+      summary: Create the site
+      description: Create the site (used during initial setup). Requires admin.
+      tags:
+      - Site
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              properties:
+                name:
+                  type: string
+                sidebar:
+                  type: string
+                  nullable: true
+                description:
+                  type: string
+                  nullable: true
+                icon:
+                  type: string
+                  nullable: true
+                banner:
+                  type: string
+                  nullable: true
+                enable_downvotes:
+                  type: boolean
+                  nullable: true
+                enable_nsfw:
+                  type: boolean
+                  nullable: true
+                community_creation_admin_only:
+                  type: boolean
+                  nullable: true
+                require_email_verification:
+                  type: boolean
+                  nullable: true
+                require_application:
+                  type: boolean
+                  nullable: true
+                application_question:
+                  type: string
+                  nullable: true
+                private_instance:
+                  type: boolean
+                  nullable: true
+                default_theme:
+                  type: string
+                  nullable: true
+                default_post_listing_type:
+                  $ref: '#/components/schemas/ListingType'
+                legal_information:
+                  type: string
+                  nullable: true
+                default_post_sort_type:
+                  $ref: '#/components/schemas/SortType'
+      responses:
+        '200':
+          description: Site created
+          content:
+            application/json:
+              schema:
+                type: object
+    put:
+      operationId: editSite
+      summary: Edit site settings
+      description: Update site-level settings. Requires admin.
+      tags:
+      - Site
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  nullable: true
+                sidebar:
+                  type: string
+                  nullable: true
+                description:
+                  type: string
+                  nullable: true
+                enable_downvotes:
+                  type: boolean
+                  nullable: true
+                enable_nsfw:
+                  type: boolean
+                  nullable: true
+      responses:
+        '200':
+          description: Site updated
+  /modlog:
+    get:
+      operationId: getModLog
+      summary: Get moderation log
+      description: Retrieve the moderation log for admin/mod actions.
+      tags:
+      - Site
+      security: []
+      parameters:
+      - name: mod_person_id
+        in: query
+        schema:
+          $ref: '#/components/schemas/PersonId'
+      - name: community_id
+        in: query
+        schema:
+          $ref: '#/components/schemas/CommunityId'
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: Moderation log entries
+  /federated_instances:
+    get:
+      operationId: getFederatedInstances
+      summary: Get federated instances
+      description: Returns lists of instances that this instance federates with, blocks, or allows.
+      tags:
+      - Site
+      security: []
+      responses:
+        '200':
+          description: Federated instance lists
+components:
+  schemas:
+    CommunityId:
+      type: integer
+      description: Unique identifier for a community
+    ListingType:
+      type: string
+      enum:
+      - All
+      - Local
+      - Subscribed
+      - ModeratorView
+    SortType:
+      type: string
+      enum:
+      - Active
+      - Hot
+      - New
+      - Old
+      - TopDay
+      - TopWeek
+      - TopMonth
+      - TopYear
+      - TopAll
+      - MostComments
+      - NewComments
+      - TopHour
+      - TopSixHour
+      - TopTwelveHour
+      - TopThreeMonths
+      - TopSixMonths
+      - TopNineMonths
+      - Controversial
+      - Scaled
+    LanguageId:
+      type: integer
+      description: Unique identifier for a language
+    PersonId:
+      type: integer
+      description: Unique identifier for a person/user
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: Lemmy Documentation
+  url: https://join-lemmy.org/docs/

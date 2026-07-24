@@ -1,0 +1,334 @@
+openapi: 3.1.0
+info:
+  title: Lemmy REST Account Post API
+  description: The Lemmy REST API provides programmatic access to all core platform features of Lemmy, a free, open-source, self-hostable federated link aggregator and discussion platform. Developers can create and manage posts, comments, communities, and user accounts; vote on content; follow communities; search across the federated network; moderate communities; send private messages; and administer instances. Authentication uses JWT bearer tokens obtained via the login endpoint. The API is versioned at /api/v4/ and available on any public Lemmy instance.
+  version: 4.0.0
+  license:
+    name: AGPL-3.0
+    url: https://github.com/LemmyNet/lemmy/blob/main/LICENSE
+  contact:
+    url: https://join-lemmy.org/docs/
+servers:
+- url: https://lemmy.world/api/v4
+  description: Lemmy.world (largest public instance)
+- url: https://{instance}/api/v4
+  description: Any Lemmy instance
+  variables:
+    instance:
+      default: lemmy.world
+      description: The hostname of a Lemmy instance
+security:
+- bearerAuth: []
+tags:
+- name: Post
+  description: Creating and managing posts
+paths:
+  /post:
+    get:
+      operationId: getPost
+      summary: Get a post
+      description: Retrieve a specific post by ID.
+      tags:
+      - Post
+      security: []
+      parameters:
+      - name: id
+        in: query
+        schema:
+          $ref: '#/components/schemas/PostId'
+      - name: comment_id
+        in: query
+        schema:
+          $ref: '#/components/schemas/CommentId'
+      responses:
+        '200':
+          description: Post details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostResponse'
+    post:
+      operationId: createPost
+      summary: Create a post
+      description: Create a new post in a community.
+      tags:
+      - Post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - name
+              - community_id
+              properties:
+                name:
+                  type: string
+                community_id:
+                  $ref: '#/components/schemas/CommunityId'
+                url:
+                  type: string
+                  format: uri
+                  nullable: true
+                body:
+                  type: string
+                  nullable: true
+                honeypot:
+                  type: string
+                  nullable: true
+                nsfw:
+                  type: boolean
+                  nullable: true
+                language_id:
+                  $ref: '#/components/schemas/LanguageId'
+                custom_thumbnail:
+                  type: string
+                  nullable: true
+                tags:
+                  type: array
+                  items:
+                    type: integer
+                  nullable: true
+      responses:
+        '200':
+          description: Post created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PostResponse'
+    put:
+      operationId: editPost
+      summary: Edit a post
+      description: Update an existing post. Only the post creator can edit.
+      tags:
+      - Post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - post_id
+              properties:
+                post_id:
+                  $ref: '#/components/schemas/PostId'
+                name:
+                  type: string
+                  nullable: true
+                url:
+                  type: string
+                  format: uri
+                  nullable: true
+                body:
+                  type: string
+                  nullable: true
+                nsfw:
+                  type: boolean
+                  nullable: true
+                language_id:
+                  $ref: '#/components/schemas/LanguageId'
+      responses:
+        '200':
+          description: Post updated
+    delete:
+      operationId: deletePost
+      summary: Delete a post
+      description: Delete or restore a post. Requires post creator.
+      tags:
+      - Post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - post_id
+              - deleted
+              properties:
+                post_id:
+                  $ref: '#/components/schemas/PostId'
+                deleted:
+                  type: boolean
+      responses:
+        '200':
+          description: Post deleted/restored
+  /post/list:
+    get:
+      operationId: listPosts
+      summary: List posts
+      description: Retrieve a paginated list of posts filtered by listing type, sort, community, and more.
+      tags:
+      - Post
+      security: []
+      parameters:
+      - name: type_
+        in: query
+        schema:
+          $ref: '#/components/schemas/ListingType'
+      - name: sort
+        in: query
+        schema:
+          $ref: '#/components/schemas/SortType'
+      - name: community_id
+        in: query
+        schema:
+          $ref: '#/components/schemas/CommunityId'
+      - name: community_name
+        in: query
+        schema:
+          type: string
+      - name: saved_only
+        in: query
+        schema:
+          type: boolean
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      - name: show_nsfw
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: List of posts
+  /post/like:
+    post:
+      operationId: likePost
+      summary: Vote on a post
+      description: Upvote or downvote a post (score 1, 0, or -1).
+      tags:
+      - Post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - post_id
+              - score
+              properties:
+                post_id:
+                  $ref: '#/components/schemas/PostId'
+                score:
+                  type: integer
+                  enum:
+                  - -1
+                  - 0
+                  - 1
+      responses:
+        '200':
+          description: Vote recorded
+  /post/save:
+    put:
+      operationId: savePost
+      summary: Save or unsave a post
+      description: Bookmark/unbookmark a post for the current user.
+      tags:
+      - Post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - post_id
+              - save
+              properties:
+                post_id:
+                  $ref: '#/components/schemas/PostId'
+                save:
+                  type: boolean
+      responses:
+        '200':
+          description: Save status updated
+  /post/report:
+    post:
+      operationId: createPostReport
+      summary: Report a post
+      description: Submit a report for a post to the instance moderators.
+      tags:
+      - Post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - post_id
+              - reason
+              properties:
+                post_id:
+                  $ref: '#/components/schemas/PostId'
+                reason:
+                  type: string
+      responses:
+        '200':
+          description: Report submitted
+components:
+  schemas:
+    CommunityId:
+      type: integer
+      description: Unique identifier for a community
+    ListingType:
+      type: string
+      enum:
+      - All
+      - Local
+      - Subscribed
+      - ModeratorView
+    SortType:
+      type: string
+      enum:
+      - Active
+      - Hot
+      - New
+      - Old
+      - TopDay
+      - TopWeek
+      - TopMonth
+      - TopYear
+      - TopAll
+      - MostComments
+      - NewComments
+      - TopHour
+      - TopSixHour
+      - TopTwelveHour
+      - TopThreeMonths
+      - TopSixMonths
+      - TopNineMonths
+      - Controversial
+      - Scaled
+    PostResponse:
+      type: object
+      properties:
+        post_view:
+          type: object
+          description: The post view with associated metadata
+    LanguageId:
+      type: integer
+      description: Unique identifier for a language
+    CommentId:
+      type: integer
+      description: Unique identifier for a comment
+    PostId:
+      type: integer
+      description: Unique identifier for a post
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: Lemmy Documentation
+  url: https://join-lemmy.org/docs/

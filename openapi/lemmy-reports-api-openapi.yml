@@ -1,0 +1,119 @@
+openapi: 3.1.0
+info:
+  title: Lemmy REST Account Reports API
+  description: The Lemmy REST API provides programmatic access to all core platform features of Lemmy, a free, open-source, self-hostable federated link aggregator and discussion platform. Developers can create and manage posts, comments, communities, and user accounts; vote on content; follow communities; search across the federated network; moderate communities; send private messages; and administer instances. Authentication uses JWT bearer tokens obtained via the login endpoint. The API is versioned at /api/v4/ and available on any public Lemmy instance.
+  version: 4.0.0
+  license:
+    name: AGPL-3.0
+    url: https://github.com/LemmyNet/lemmy/blob/main/LICENSE
+  contact:
+    url: https://join-lemmy.org/docs/
+servers:
+- url: https://lemmy.world/api/v4
+  description: Lemmy.world (largest public instance)
+- url: https://{instance}/api/v4
+  description: Any Lemmy instance
+  variables:
+    instance:
+      default: lemmy.world
+      description: The hostname of a Lemmy instance
+security:
+- bearerAuth: []
+tags:
+- name: Reports
+  description: Content reporting and moderation
+paths:
+  /post/report:
+    post:
+      operationId: createPostReport
+      summary: Report a post
+      description: Submit a report for a post to the instance moderators.
+      tags:
+      - Reports
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - post_id
+              - reason
+              properties:
+                post_id:
+                  $ref: '#/components/schemas/PostId'
+                reason:
+                  type: string
+      responses:
+        '200':
+          description: Report submitted
+  /comment/report:
+    post:
+      operationId: createCommentReport
+      summary: Report a comment
+      description: Submit a report for a comment to the instance moderators.
+      tags:
+      - Reports
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - comment_id
+              - reason
+              properties:
+                comment_id:
+                  $ref: '#/components/schemas/CommentId'
+                reason:
+                  type: string
+      responses:
+        '200':
+          description: Report submitted
+  /report/list:
+    get:
+      operationId: listReports
+      summary: List reports
+      description: Retrieve a list of content reports. Requires moderator or admin.
+      tags:
+      - Reports
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      - name: community_id
+        in: query
+        schema:
+          $ref: '#/components/schemas/CommunityId'
+      - name: unresolved_only
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: List of reports
+components:
+  schemas:
+    CommentId:
+      type: integer
+      description: Unique identifier for a comment
+    CommunityId:
+      type: integer
+      description: Unique identifier for a community
+    PostId:
+      type: integer
+      description: Unique identifier for a post
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: Lemmy Documentation
+  url: https://join-lemmy.org/docs/

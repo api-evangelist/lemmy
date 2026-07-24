@@ -1,0 +1,203 @@
+openapi: 3.1.0
+info:
+  title: Lemmy REST Account API
+  description: The Lemmy REST API provides programmatic access to all core platform features of Lemmy, a free, open-source, self-hostable federated link aggregator and discussion platform. Developers can create and manage posts, comments, communities, and user accounts; vote on content; follow communities; search across the federated network; moderate communities; send private messages; and administer instances. Authentication uses JWT bearer tokens obtained via the login endpoint. The API is versioned at /api/v4/ and available on any public Lemmy instance.
+  version: 4.0.0
+  license:
+    name: AGPL-3.0
+    url: https://github.com/LemmyNet/lemmy/blob/main/LICENSE
+  contact:
+    url: https://join-lemmy.org/docs/
+servers:
+- url: https://lemmy.world/api/v4
+  description: Lemmy.world (largest public instance)
+- url: https://{instance}/api/v4
+  description: Any Lemmy instance
+  variables:
+    instance:
+      default: lemmy.world
+      description: The hostname of a Lemmy instance
+security:
+- bearerAuth: []
+tags:
+- name: Account
+  description: User account management and settings
+paths:
+  /account:
+    get:
+      operationId: getMyUser
+      summary: Get current user details
+      description: Retrieve the currently authenticated user's profile and settings.
+      tags:
+      - Account
+      responses:
+        '200':
+          description: Current user information
+    delete:
+      operationId: deleteAccount
+      summary: Delete account
+      description: Permanently delete the authenticated user's account.
+      tags:
+      - Account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - password
+              - delete_content
+              properties:
+                password:
+                  type: string
+                  format: password
+                delete_content:
+                  type: boolean
+                  description: Whether to delete all posts and comments
+      responses:
+        '200':
+          description: Account deleted
+  /account/unread_counts:
+    get:
+      operationId: getUnreadCounts
+      summary: Get unread notification counts
+      description: Returns the count of unread notifications, messages, and mentions.
+      tags:
+      - Account
+      responses:
+        '200':
+          description: Unread counts
+  /account/settings/save:
+    put:
+      operationId: saveUserSettings
+      summary: Save user settings
+      description: Update the authenticated user's profile settings and preferences.
+      tags:
+      - Account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                show_nsfw:
+                  type: boolean
+                  nullable: true
+                theme:
+                  type: string
+                  nullable: true
+                default_sort_type:
+                  $ref: '#/components/schemas/SortType'
+                default_listing_type:
+                  $ref: '#/components/schemas/ListingType'
+                interface_language:
+                  type: string
+                  nullable: true
+                avatar:
+                  type: string
+                  nullable: true
+                banner:
+                  type: string
+                  nullable: true
+                display_name:
+                  type: string
+                  nullable: true
+                email:
+                  type: string
+                  format: email
+                  nullable: true
+                bio:
+                  type: string
+                  nullable: true
+                show_avatars:
+                  type: boolean
+                  nullable: true
+                send_notifications_to_email:
+                  type: boolean
+                  nullable: true
+                bot_account:
+                  type: boolean
+                  nullable: true
+                show_bot_accounts:
+                  type: boolean
+                  nullable: true
+                matrix_user_id:
+                  type: string
+                  nullable: true
+      responses:
+        '200':
+          description: Settings saved
+  /account/notification/list:
+    get:
+      operationId: listNotifications
+      summary: List notifications
+      description: Retrieve a paginated list of notifications for the authenticated user.
+      tags:
+      - Account
+      parameters:
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: limit
+        in: query
+        schema:
+          type: integer
+      - name: unread_only
+        in: query
+        schema:
+          type: boolean
+      responses:
+        '200':
+          description: List of notifications
+  /account/notification/mark_as_read/all:
+    post:
+      operationId: markAllNotificationsRead
+      summary: Mark all notifications as read
+      description: Mark all pending notifications as read for the authenticated user.
+      tags:
+      - Account
+      responses:
+        '200':
+          description: All notifications marked as read
+components:
+  schemas:
+    SortType:
+      type: string
+      enum:
+      - Active
+      - Hot
+      - New
+      - Old
+      - TopDay
+      - TopWeek
+      - TopMonth
+      - TopYear
+      - TopAll
+      - MostComments
+      - NewComments
+      - TopHour
+      - TopSixHour
+      - TopTwelveHour
+      - TopThreeMonths
+      - TopSixMonths
+      - TopNineMonths
+      - Controversial
+      - Scaled
+    ListingType:
+      type: string
+      enum:
+      - All
+      - Local
+      - Subscribed
+      - ModeratorView
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+externalDocs:
+  description: Lemmy Documentation
+  url: https://join-lemmy.org/docs/
