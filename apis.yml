@@ -11,7 +11,20 @@ description: >-
   JWT bearer tokens obtained via the login endpoint. The software is licensed under AGPL-3.0 and
   written in Rust with an Actix web framework backend.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/lemmy.png
 tags:
   - Communities
   - Federated
@@ -24,61 +37,566 @@ created: '2026-06-13'
 modified: '2026-06-13'
 specificationVersion: '0.19'
 apis:
-  - aid: lemmy:api
-    name: Lemmy REST API
-    description: >-
-      The Lemmy REST API provides programmatic access to all core platform features including
-      creating and managing posts, comments, communities, and user accounts. Developers can use the
-      API to vote on content, follow communities, search across the federated network, moderate
-      communities, send private messages, manage multi-communities, and administer instances.
-      Authentication uses JWT bearer tokens. The API is versioned at /api/v4/ and is available on
-      any public Lemmy instance, with lemmy.world being the largest instance. Rate limits are
-      configurable per instance; common defaults include 50 comments per 10 minutes, 100 search
-      requests per 10 minutes, and 5 registrations per day.
-    humanURL: https://join-lemmy.org/docs/
-    baseURL: https://lemmy.world/api/v4
-    tags:
-      - Comments
-      - Communities
-      - Federated
-      - Fediverse
-      - Link Aggregator
-      - Posts
-      - Social Networks
-      - Voting
-    properties:
-      - type: Documentation
-        url: https://join-lemmy.org/docs/
-      - type: Authentication
-        url: https://join-lemmy.org/docs/client_development/authentication.html
-      - type: GitHubRepository
-        url: https://github.com/LemmyNet/lemmy
-      - type: GitHubRepository
-        url: https://github.com/LemmyNet/lemmy-js-client
-      - type: OpenAPI
-        url: openapi/openapi.yml
-      - type: JSONSchema
-        url: json-schema/post.json
-      - type: JSONSchema
-        url: json-schema/comment.json
-      - type: JSONSchema
-        url: json-schema/community.json
-      - type: JSONLDContext
-        url: json-ld/lemmy-context.jsonld
-      - type: Vocabulary
-        url: vocabulary/lemmy-vocabulary.yml
-      - type: Examples
-        url: examples/login.json
-      - type: Examples
-        url: examples/create-post.json
-      - type: Examples
-        url: examples/search.json
-      - type: RateLimits
-        url: rate-limits/lemmy-rate-limits.yml
-      - type: Plans
-        url: plans/lemmy-plans-pricing.yml
-      - type: FinOps
-        url: finops/lemmy-finops.yml
+- aid: lemmy:lemmy-account-api
+  name: Lemmy Account API
+  description: User account management and settings
+  humanURL: https://join-lemmy.org/docs/
+  baseURL: https://lemmy.world/api/v4
+  tags:
+  - Account
+  properties:
+  - type: OpenAPI
+    url: openapi/lemmy-account-api-openapi.yml
+  - type: Documentation
+    url: https://join-lemmy.org/docs/
+  - type: Authentication
+    url: https://join-lemmy.org/docs/client_development/authentication.html
+  - type: GitHubRepository
+    url: https://github.com/LemmyNet/lemmy
+  - type: GitHubRepository
+    url: https://github.com/LemmyNet/lemmy-js-client
+  - type: JSONSchema
+    url: json-schema/post.json
+  - type: JSONSchema
+    url: json-schema/comment.json
+  - type: JSONSchema
+    url: json-schema/community.json
+  - type: JSONLDContext
+    url: json-ld/lemmy-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/lemmy-vocabulary.yml
+  - type: Examples
+    url: examples/login.json
+  - type: Examples
+    url: examples/create-post.json
+  - type: Examples
+    url: examples/search.json
+  - type: RateLimits
+    url: rate-limits/lemmy-rate-limits.yml
+  - type: Plans
+    url: plans/lemmy-plans-pricing.yml
+  - type: FinOps
+    url: finops/lemmy-finops.yml
+- aid: lemmy:lemmy-admin-api
+  name: Lemmy Admin API
+  description: Administrative actions
+  humanURL: https://join-lemmy.org/docs/
+  baseURL: https://lemmy.world/api/v4
+  tags:
+  - Admin
+  properties:
+  - type: OpenAPI
+    url: openapi/lemmy-admin-api-openapi.yml
+  - type: Documentation
+    url: https://join-lemmy.org/docs/
+  - type: Authentication
+    url: https://join-lemmy.org/docs/client_development/authentication.html
+  - type: GitHubRepository
+    url: https://github.com/LemmyNet/lemmy
+  - type: GitHubRepository
+    url: https://github.com/LemmyNet/lemmy-js-client
+  - type: JSONSchema
+    url: json-schema/post.json
+  - type: JSONSchema
+    url: json-schema/comment.json
+  - type: JSONSchema
+    url: json-schema/community.json
+  - type: JSONLDContext
+    url: json-ld/lemmy-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/lemmy-vocabulary.yml
+  - type: Examples
+    url: examples/login.json
+  - type: Examples
+    url: examples/create-post.json
+  - type: Examples
+    url: examples/search.json
+  - type: RateLimits
+    url: rate-limits/lemmy-rate-limits.yml
+  - type: Plans
+    url: plans/lemmy-plans-pricing.yml
+  - type: FinOps
+    url: finops/lemmy-finops.yml
+- aid: lemmy:lemmy-authentication-api
+  name: Lemmy Authentication API
+  description: Account registration, login, and password management
+  humanURL: https://join-lemmy.org/docs/
+  baseURL: https://lemmy.world/api/v4
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/lemmy-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://join-lemmy.org/docs/
+  - type: Authentication
+    url: https://join-lemmy.org/docs/client_development/authentication.html
+  - type: GitHubRepository
+    url: https://github.com/LemmyNet/lemmy
+  - type: GitHubRepository
+    url: https://github.com/LemmyNet/lemmy-js-client
+  - type: JSONSchema
+    url: json-schema/post.json
+  - type: JSONSchema
+    url: json-schema/comment.json
+  - type: JSONSchema
+    url: json-schema/community.json
+  - type: JSONLDContext
+    url: json-ld/lemmy-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/lemmy-vocabulary.yml
+  - type: Examples
+    url: examples/login.json
+  - type: Examples
+    url: examples/create-post.json
+  - type: Examples
+    url: examples/search.json
+  - type: RateLimits
+    url: rate-limits/lemmy-rate-limits.yml
+  - type: Plans
+    url: plans/lemmy-plans-pricing.yml
+  - type: FinOps
+    url: finops/lemmy-finops.yml
+- aid: lemmy:lemmy-comment-api
+  name: Lemmy Comment API
+  description: Creating and managing comments
+  humanURL: https://join-lemmy.org/docs/
+  baseURL: https://lemmy.world/api/v4
+  tags:
+  - Comment
+  properties:
+  - type: OpenAPI
+    url: openapi/lemmy-comment-api-openapi.yml
+  - type: Documentation
+    url: https://join-lemmy.org/docs/
+  - type: Authentication
+    url: https://join-lemmy.org/docs/client_development/authentication.html
+  - type: GitHubRepository
+    url: https://github.com/LemmyNet/lemmy
+  - type: GitHubRepository
+    url: https://github.com/LemmyNet/lemmy-js-client
+  - type: JSONSchema
+    url: json-schema/post.json
+  - type: JSONSchema
+    url: json-schema/comment.json
+  - type: JSONSchema
+    url: json-schema/community.json
+  - type: JSONLDContext
+    url: json-ld/lemmy-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/lemmy-vocabulary.yml
+  - type: Examples
+    url: examples/login.json
+  - type: Examples
+    url: examples/create-post.json
+  - type: Examples
+    url: examples/search.json
+  - type: RateLimits
+    url: rate-limits/lemmy-rate-limits.yml
+  - type: Plans
+    url: plans/lemmy-plans-pricing.yml
+  - type: FinOps
+    url: finops/lemmy-finops.yml
+- aid: lemmy:lemmy-community-api
+  name: Lemmy Community API
+  description: Community management and discovery
+  humanURL: https://join-lemmy.org/docs/
+  baseURL: https://lemmy.world/api/v4
+  tags:
+  - Community
+  properties:
+  - type: OpenAPI
+    url: openapi/lemmy-community-api-openapi.yml
+  - type: Documentation
+    url: https://join-lemmy.org/docs/
+  - type: Authentication
+    url: https://join-lemmy.org/docs/client_development/authentication.html
+  - type: GitHubRepository
+    url: https://github.com/LemmyNet/lemmy
+  - type: GitHubRepository
+    url: https://github.com/LemmyNet/lemmy-js-client
+  - type: JSONSchema
+    url: json-schema/post.json
+  - type: JSONSchema
+    url: json-schema/comment.json
+  - type: JSONSchema
+    url: json-schema/community.json
+  - type: JSONLDContext
+    url: json-ld/lemmy-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/lemmy-vocabulary.yml
+  - type: Examples
+    url: examples/login.json
+  - type: Examples
+    url: examples/create-post.json
+  - type: Examples
+    url: examples/search.json
+  - type: RateLimits
+    url: rate-limits/lemmy-rate-limits.yml
+  - type: Plans
+    url: plans/lemmy-plans-pricing.yml
+  - type: FinOps
+    url: finops/lemmy-finops.yml
+- aid: lemmy:lemmy-federation-api
+  name: Lemmy Federation API
+  description: ActivityPub federation and cross-instance operations
+  humanURL: https://join-lemmy.org/docs/
+  baseURL: https://lemmy.world/api/v4
+  tags:
+  - Federation
+  properties:
+  - type: OpenAPI
+    url: openapi/lemmy-federation-api-openapi.yml
+  - type: Documentation
+    url: https://join-lemmy.org/docs/
+  - type: Authentication
+    url: https://join-lemmy.org/docs/client_development/authentication.html
+  - type: GitHubRepository
+    url: https://github.com/LemmyNet/lemmy
+  - type: GitHubRepository
+    url: https://github.com/LemmyNet/lemmy-js-client
+  - type: JSONSchema
+    url: json-schema/post.json
+  - type: JSONSchema
+    url: json-schema/comment.json
+  - type: JSONSchema
+    url: json-schema/community.json
+  - type: JSONLDContext
+    url: json-ld/lemmy-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/lemmy-vocabulary.yml
+  - type: Examples
+    url: examples/login.json
+  - type: Examples
+    url: examples/create-post.json
+  - type: Examples
+    url: examples/search.json
+  - type: RateLimits
+    url: rate-limits/lemmy-rate-limits.yml
+  - type: Plans
+    url: plans/lemmy-plans-pricing.yml
+  - type: FinOps
+    url: finops/lemmy-finops.yml
+- aid: lemmy:lemmy-images-api
+  name: Lemmy Images API
+  description: Image upload and retrieval
+  humanURL: https://join-lemmy.org/docs/
+  baseURL: https://lemmy.world/api/v4
+  tags:
+  - Images
+  properties:
+  - type: OpenAPI
+    url: openapi/lemmy-images-api-openapi.yml
+  - type: Documentation
+    url: https://join-lemmy.org/docs/
+  - type: Authentication
+    url: https://join-lemmy.org/docs/client_development/authentication.html
+  - type: GitHubRepository
+    url: https://github.com/LemmyNet/lemmy
+  - type: GitHubRepository
+    url: https://github.com/LemmyNet/lemmy-js-client
+  - type: JSONSchema
+    url: json-schema/post.json
+  - type: JSONSchema
+    url: json-schema/comment.json
+  - type: JSONSchema
+    url: json-schema/community.json
+  - type: JSONLDContext
+    url: json-ld/lemmy-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/lemmy-vocabulary.yml
+  - type: Examples
+    url: examples/login.json
+  - type: Examples
+    url: examples/create-post.json
+  - type: Examples
+    url: examples/search.json
+  - type: RateLimits
+    url: rate-limits/lemmy-rate-limits.yml
+  - type: Plans
+    url: plans/lemmy-plans-pricing.yml
+  - type: FinOps
+    url: finops/lemmy-finops.yml
+- aid: lemmy:lemmy-notifications-api
+  name: Lemmy Notifications API
+  description: User notifications and alerts
+  humanURL: https://join-lemmy.org/docs/
+  baseURL: https://lemmy.world/api/v4
+  tags:
+  - Notifications
+  properties:
+  - type: OpenAPI
+    url: openapi/lemmy-notifications-api-openapi.yml
+  - type: Documentation
+    url: https://join-lemmy.org/docs/
+  - type: Authentication
+    url: https://join-lemmy.org/docs/client_development/authentication.html
+  - type: GitHubRepository
+    url: https://github.com/LemmyNet/lemmy
+  - type: GitHubRepository
+    url: https://github.com/LemmyNet/lemmy-js-client
+  - type: JSONSchema
+    url: json-schema/post.json
+  - type: JSONSchema
+    url: json-schema/comment.json
+  - type: JSONSchema
+    url: json-schema/community.json
+  - type: JSONLDContext
+    url: json-ld/lemmy-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/lemmy-vocabulary.yml
+  - type: Examples
+    url: examples/login.json
+  - type: Examples
+    url: examples/create-post.json
+  - type: Examples
+    url: examples/search.json
+  - type: RateLimits
+    url: rate-limits/lemmy-rate-limits.yml
+  - type: Plans
+    url: plans/lemmy-plans-pricing.yml
+  - type: FinOps
+    url: finops/lemmy-finops.yml
+- aid: lemmy:lemmy-person-api
+  name: Lemmy Person API
+  description: User profiles and discovery
+  humanURL: https://join-lemmy.org/docs/
+  baseURL: https://lemmy.world/api/v4
+  tags:
+  - Person
+  properties:
+  - type: OpenAPI
+    url: openapi/lemmy-person-api-openapi.yml
+  - type: Documentation
+    url: https://join-lemmy.org/docs/
+  - type: Authentication
+    url: https://join-lemmy.org/docs/client_development/authentication.html
+  - type: GitHubRepository
+    url: https://github.com/LemmyNet/lemmy
+  - type: GitHubRepository
+    url: https://github.com/LemmyNet/lemmy-js-client
+  - type: JSONSchema
+    url: json-schema/post.json
+  - type: JSONSchema
+    url: json-schema/comment.json
+  - type: JSONSchema
+    url: json-schema/community.json
+  - type: JSONLDContext
+    url: json-ld/lemmy-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/lemmy-vocabulary.yml
+  - type: Examples
+    url: examples/login.json
+  - type: Examples
+    url: examples/create-post.json
+  - type: Examples
+    url: examples/search.json
+  - type: RateLimits
+    url: rate-limits/lemmy-rate-limits.yml
+  - type: Plans
+    url: plans/lemmy-plans-pricing.yml
+  - type: FinOps
+    url: finops/lemmy-finops.yml
+- aid: lemmy:lemmy-post-api
+  name: Lemmy Post API
+  description: Creating and managing posts
+  humanURL: https://join-lemmy.org/docs/
+  baseURL: https://lemmy.world/api/v4
+  tags:
+  - Post
+  properties:
+  - type: OpenAPI
+    url: openapi/lemmy-post-api-openapi.yml
+  - type: Documentation
+    url: https://join-lemmy.org/docs/
+  - type: Authentication
+    url: https://join-lemmy.org/docs/client_development/authentication.html
+  - type: GitHubRepository
+    url: https://github.com/LemmyNet/lemmy
+  - type: GitHubRepository
+    url: https://github.com/LemmyNet/lemmy-js-client
+  - type: JSONSchema
+    url: json-schema/post.json
+  - type: JSONSchema
+    url: json-schema/comment.json
+  - type: JSONSchema
+    url: json-schema/community.json
+  - type: JSONLDContext
+    url: json-ld/lemmy-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/lemmy-vocabulary.yml
+  - type: Examples
+    url: examples/login.json
+  - type: Examples
+    url: examples/create-post.json
+  - type: Examples
+    url: examples/search.json
+  - type: RateLimits
+    url: rate-limits/lemmy-rate-limits.yml
+  - type: Plans
+    url: plans/lemmy-plans-pricing.yml
+  - type: FinOps
+    url: finops/lemmy-finops.yml
+- aid: lemmy:lemmy-private-messages-api
+  name: Lemmy Private Messages API
+  description: Direct messaging between users
+  humanURL: https://join-lemmy.org/docs/
+  baseURL: https://lemmy.world/api/v4
+  tags:
+  - Private Messages
+  properties:
+  - type: OpenAPI
+    url: openapi/lemmy-private-messages-api-openapi.yml
+  - type: Documentation
+    url: https://join-lemmy.org/docs/
+  - type: Authentication
+    url: https://join-lemmy.org/docs/client_development/authentication.html
+  - type: GitHubRepository
+    url: https://github.com/LemmyNet/lemmy
+  - type: GitHubRepository
+    url: https://github.com/LemmyNet/lemmy-js-client
+  - type: JSONSchema
+    url: json-schema/post.json
+  - type: JSONSchema
+    url: json-schema/comment.json
+  - type: JSONSchema
+    url: json-schema/community.json
+  - type: JSONLDContext
+    url: json-ld/lemmy-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/lemmy-vocabulary.yml
+  - type: Examples
+    url: examples/login.json
+  - type: Examples
+    url: examples/create-post.json
+  - type: Examples
+    url: examples/search.json
+  - type: RateLimits
+    url: rate-limits/lemmy-rate-limits.yml
+  - type: Plans
+    url: plans/lemmy-plans-pricing.yml
+  - type: FinOps
+    url: finops/lemmy-finops.yml
+- aid: lemmy:lemmy-reports-api
+  name: Lemmy Reports API
+  description: Content reporting and moderation
+  humanURL: https://join-lemmy.org/docs/
+  baseURL: https://lemmy.world/api/v4
+  tags:
+  - Reports
+  properties:
+  - type: OpenAPI
+    url: openapi/lemmy-reports-api-openapi.yml
+  - type: Documentation
+    url: https://join-lemmy.org/docs/
+  - type: Authentication
+    url: https://join-lemmy.org/docs/client_development/authentication.html
+  - type: GitHubRepository
+    url: https://github.com/LemmyNet/lemmy
+  - type: GitHubRepository
+    url: https://github.com/LemmyNet/lemmy-js-client
+  - type: JSONSchema
+    url: json-schema/post.json
+  - type: JSONSchema
+    url: json-schema/comment.json
+  - type: JSONSchema
+    url: json-schema/community.json
+  - type: JSONLDContext
+    url: json-ld/lemmy-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/lemmy-vocabulary.yml
+  - type: Examples
+    url: examples/login.json
+  - type: Examples
+    url: examples/create-post.json
+  - type: Examples
+    url: examples/search.json
+  - type: RateLimits
+    url: rate-limits/lemmy-rate-limits.yml
+  - type: Plans
+    url: plans/lemmy-plans-pricing.yml
+  - type: FinOps
+    url: finops/lemmy-finops.yml
+- aid: lemmy:lemmy-search-api
+  name: Lemmy Search API
+  description: Search across posts, comments, communities, and users
+  humanURL: https://join-lemmy.org/docs/
+  baseURL: https://lemmy.world/api/v4
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/lemmy-search-api-openapi.yml
+  - type: Documentation
+    url: https://join-lemmy.org/docs/
+  - type: Authentication
+    url: https://join-lemmy.org/docs/client_development/authentication.html
+  - type: GitHubRepository
+    url: https://github.com/LemmyNet/lemmy
+  - type: GitHubRepository
+    url: https://github.com/LemmyNet/lemmy-js-client
+  - type: JSONSchema
+    url: json-schema/post.json
+  - type: JSONSchema
+    url: json-schema/comment.json
+  - type: JSONSchema
+    url: json-schema/community.json
+  - type: JSONLDContext
+    url: json-ld/lemmy-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/lemmy-vocabulary.yml
+  - type: Examples
+    url: examples/login.json
+  - type: Examples
+    url: examples/create-post.json
+  - type: Examples
+    url: examples/search.json
+  - type: RateLimits
+    url: rate-limits/lemmy-rate-limits.yml
+  - type: Plans
+    url: plans/lemmy-plans-pricing.yml
+  - type: FinOps
+    url: finops/lemmy-finops.yml
+- aid: lemmy:lemmy-site-api
+  name: Lemmy Site API
+  description: Site-level information and configuration
+  humanURL: https://join-lemmy.org/docs/
+  baseURL: https://lemmy.world/api/v4
+  tags:
+  - Site
+  properties:
+  - type: OpenAPI
+    url: openapi/lemmy-site-api-openapi.yml
+  - type: Documentation
+    url: https://join-lemmy.org/docs/
+  - type: Authentication
+    url: https://join-lemmy.org/docs/client_development/authentication.html
+  - type: GitHubRepository
+    url: https://github.com/LemmyNet/lemmy
+  - type: GitHubRepository
+    url: https://github.com/LemmyNet/lemmy-js-client
+  - type: JSONSchema
+    url: json-schema/post.json
+  - type: JSONSchema
+    url: json-schema/comment.json
+  - type: JSONSchema
+    url: json-schema/community.json
+  - type: JSONLDContext
+    url: json-ld/lemmy-context.jsonld
+  - type: Vocabulary
+    url: vocabulary/lemmy-vocabulary.yml
+  - type: Examples
+    url: examples/login.json
+  - type: Examples
+    url: examples/create-post.json
+  - type: Examples
+    url: examples/search.json
+  - type: RateLimits
+    url: rate-limits/lemmy-rate-limits.yml
+  - type: Plans
+    url: plans/lemmy-plans-pricing.yml
+  - type: FinOps
+    url: finops/lemmy-finops.yml
 common:
   - type: AgenticAccess
     url: agentic-access/lemmy-agentic-access.yml
