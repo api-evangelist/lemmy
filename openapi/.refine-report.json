@@ -1,0 +1,40 @@
+{
+  "provider": "lemmy",
+  "sources": [
+    "lemmy-account-api-openapi.yml",
+    "lemmy-admin-api-openapi.yml",
+    "lemmy-authentication-api-openapi.yml",
+    "lemmy-comment-api-openapi.yml",
+    "lemmy-community-api-openapi.yml",
+    "lemmy-federation-api-openapi.yml",
+    "lemmy-images-api-openapi.yml",
+    "lemmy-notifications-api-openapi.yml",
+    "lemmy-person-api-openapi.yml",
+    "lemmy-post-api-openapi.yml",
+    "lemmy-private-messages-api-openapi.yml",
+    "lemmy-reports-api-openapi.yml",
+    "lemmy-search-api-openapi.yml",
+    "lemmy-site-api-openapi.yml"
+  ],
+  "outputs": [
+    "lemmy-account-api-openapi.yml",
+    "lemmy-admin-api-openapi.yml",
+    "lemmy-authentication-api-openapi.yml",
+    "lemmy-comment-api-openapi.yml",
+    "lemmy-community-api-openapi.yml",
+    "lemmy-federation-api-openapi.yml",
+    "lemmy-images-api-openapi.yml",
+    "lemmy-notifications-api-openapi.yml",
+    "lemmy-person-api-openapi.yml",
+    "lemmy-post-api-openapi.yml",
+    "lemmy-private-messages-api-openapi.yml",
+    "lemmy-reports-api-openapi.yml",
+    "lemmy-search-api-openapi.yml",
+    "lemmy-site-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
