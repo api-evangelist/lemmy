@@ -598,6 +598,12 @@ apis:
   - type: FinOps
     url: finops/lemmy-finops.yml
 common:
+  - type: IssueTracker
+    url: https://github.com/LemmyNet/lemmy/issues
+  - type: Releases
+    url: https://github.com/LemmyNet/lemmy/releases
+  - type: SecurityPolicy
+    url: https://github.com/LemmyNet/lemmy/blob/main/.github/SECURITY.md
   - type: AgenticAccess
     url: agentic-access/lemmy-agentic-access.yml
   - type: DomainSecurity
