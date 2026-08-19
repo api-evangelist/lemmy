@@ -1,0 +1,335 @@
+{
+  "item": [
+    {
+      "id": "f8551fe1-22e3-47c2-b30d-151e369d5c8b",
+      "name": "Reports",
+      "description": {
+        "content": "Content reporting and moderation",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "42877b1e-9753-4783-b109-9278edc18b9f",
+          "name": "Report a post",
+          "request": {
+            "name": "Report a post",
+            "description": {
+              "content": "Submit a report for a post to the instance moderators.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "post",
+                "report"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"post_id\": \"<integer>\",\n  \"reason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "37269480-c0c0-49e1-852c-9198cb2459c7",
+              "name": "Report submitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "post",
+                    "report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"post_id\": 6161,\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e7d58b4c-61e8-4962-86d6-b74e814b69c7",
+          "name": "Report a comment",
+          "request": {
+            "name": "Report a comment",
+            "description": {
+              "content": "Submit a report for a comment to the instance moderators.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "comment",
+                "report"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"comment_id\": \"<integer>\",\n  \"reason\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3679c4c5-d0ef-4079-a32a-10126322fdf2",
+              "name": "Report submitted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "comment",
+                    "report"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"comment_id\": 4427,\n  \"reason\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "4d02e4ac-abbf-465d-9cb7-ee943fb617f9",
+          "name": "List reports",
+          "request": {
+            "name": "List reports",
+            "description": {
+              "content": "Retrieve a list of content reports. Requires moderator or admin.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "report",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "community_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "unresolved_only",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c6c15a71-f5c8-468d-8c2b-4abbf8994c38",
+              "name": "List of reports",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "report",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "community_id",
+                      "value": "6752"
+                    },
+                    {
+                      "key": "unresolved_only",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://lemmy.world/api/v4",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "be4778c8-3064-492b-aa0c-162edec67770",
+    "name": "Lemmy REST Account Reports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Lemmy REST API provides programmatic access to all core platform features of Lemmy, a free, open-source, self-hostable federated link aggregator and discussion platform. Developers can create and manage posts, comments, communities, and user accounts; vote on content; follow communities; search across the federated network; moderate communities; send private messages; and administer instances. Authentication uses JWT bearer tokens obtained via the login endpoint. The API is versioned at /api/v4/ and available on any public Lemmy instance.",
+      "type": "text/plain"
+    }
+  }
+}

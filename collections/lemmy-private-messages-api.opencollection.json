@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lemmy REST Account Private Messages API",
+    "version": "4.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Private Messages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Send a private message",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://lemmy.world/api/v4/private_message",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a direct private message to another user."
+        },
+        {
+          "info": {
+            "name": "Edit a private message",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://lemmy.world/api/v4/private_message",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the content of a private message. Requires message author."
+        },
+        {
+          "info": {
+            "name": "Delete a private message",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://lemmy.world/api/v4/private_message",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete a private message. Requires message author."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

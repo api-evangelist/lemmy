@@ -1,0 +1,700 @@
+{
+  "item": [
+    {
+      "id": "de2f61a0-6c44-41e8-b787-bafdd802bdf8",
+      "name": "Community",
+      "description": {
+        "content": "Community management and discovery",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e5136732-c8cb-4e1a-b5ad-e896cf6a7bd8",
+          "name": "Get community details",
+          "request": {
+            "name": "Get community details",
+            "description": {
+              "content": "Retrieve information about a specific community.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "community"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "97192785-ba83-40e3-81a4-570909cf1470",
+              "name": "Community information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "community"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "9463"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"community_view\": {},\n  \"discussion_languages\": [\n    6775,\n    738\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "373b7d7e-462f-496a-bd6f-720360d80083",
+          "name": "Create a community",
+          "request": {
+            "name": "Create a community",
+            "description": {
+              "content": "Create a new community on this instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "community"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"banner\": \"<string>\",\n  \"nsfw\": \"<boolean>\",\n  \"posting_restricted_to_mods\": \"<boolean>\",\n  \"discussion_languages\": [\n    \"<integer>\",\n    \"<integer>\"\n  ],\n  \"visibility\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0ccfdee5-75ae-41fb-a765-f470afa902c1",
+              "name": "Community created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "community"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"banner\": \"<string>\",\n  \"nsfw\": \"<boolean>\",\n  \"posting_restricted_to_mods\": \"<boolean>\",\n  \"discussion_languages\": [\n    4577,\n    3022\n  ],\n  \"visibility\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"community_view\": {},\n  \"discussion_languages\": [\n    6775,\n    738\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0bfa1994-55c5-4357-a172-c62c7a087a23",
+          "name": "Edit a community",
+          "request": {
+            "name": "Edit a community",
+            "description": {
+              "content": "Update an existing community. Requires mod or admin.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "community"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"community_id\": \"<integer>\",\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"nsfw\": \"<boolean>\",\n  \"posting_restricted_to_mods\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c1991187-7969-495a-907d-3ddce8c8cf41",
+              "name": "Community updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "community"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"community_id\": 8059,\n  \"title\": \"<string>\",\n  \"description\": \"<string>\",\n  \"nsfw\": \"<boolean>\",\n  \"posting_restricted_to_mods\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "699c99d8-5204-4c77-ad6e-f79c6cd897d0",
+          "name": "Delete a community",
+          "request": {
+            "name": "Delete a community",
+            "description": {
+              "content": "Delete a community. Requires community creator or admin.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "community"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"community_id\": \"<integer>\",\n  \"deleted\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6afab640-a221-4b02-bfd9-1d0d17d814ac",
+              "name": "Community deleted/restored",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "community"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"community_id\": 8852,\n  \"deleted\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a0b5967e-cc56-4d1f-a354-6fdcf29fd244",
+          "name": "List communities",
+          "request": {
+            "name": "List communities",
+            "description": {
+              "content": "List communities available on this instance or across the network.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "community",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "type_",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "show_nsfw",
+                  "value": "<boolean>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9756de88-ff9a-408e-b50b-33045b855580",
+              "name": "List of communities",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "community",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "type_",
+                      "value": "Subscribed"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "show_nsfw",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bf95412b-97d9-4e02-844e-2e5756aa22c2",
+          "name": "Follow or unfollow a community",
+          "request": {
+            "name": "Follow or unfollow a community",
+            "description": {
+              "content": "Subscribe or unsubscribe from a community.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "community",
+                "follow"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"community_id\": \"<integer>\",\n  \"follow\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "310f8d58-b5f3-45cc-9ec6-aaa414bc5019",
+              "name": "Follow status updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "community",
+                    "follow"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"community_id\": 2238,\n  \"follow\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "93895dd1-dee0-4f6c-82f8-cc53c70b3664",
+          "name": "Get a random community",
+          "request": {
+            "name": "Get a random community",
+            "description": {
+              "content": "Returns a random community from the instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "community",
+                "random"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6dc3b0d2-4c4f-42e7-b968-f84fafbb34a9",
+              "name": "A random community",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "community",
+                    "random"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://lemmy.world/api/v4",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "8ac3f0e5-ef58-42ff-8663-1384606bea64",
+    "name": "Lemmy REST Account Community API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Lemmy REST API provides programmatic access to all core platform features of Lemmy, a free, open-source, self-hostable federated link aggregator and discussion platform. Developers can create and manage posts, comments, communities, and user accounts; vote on content; follow communities; search across the federated network; moderate communities; send private messages; and administer instances. Authentication uses JWT bearer tokens obtained via the login endpoint. The API is versioned at /api/v4/ and available on any public Lemmy instance.",
+      "type": "text/plain"
+    }
+  }
+}

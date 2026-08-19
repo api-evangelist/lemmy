@@ -1,0 +1,216 @@
+{
+  "item": [
+    {
+      "id": "4fe7f2fa-73c5-4e2b-858b-fcbc7f0bfded",
+      "name": "Notifications",
+      "description": {
+        "content": "User notifications and alerts",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8081bca9-613c-4a42-ba00-563264c29225",
+          "name": "List notifications",
+          "request": {
+            "name": "List notifications",
+            "description": {
+              "content": "Retrieve a paginated list of notifications for the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "account",
+                "notification",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "unread_only",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "43aac26a-d6ca-4e29-8597-cc3b9830486a",
+              "name": "List of notifications",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "notification",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "unread_only",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2a2aebf0-d13c-44f5-a3f7-831c9f4769ba",
+          "name": "Mark all notifications as read",
+          "request": {
+            "name": "Mark all notifications as read",
+            "description": {
+              "content": "Mark all pending notifications as read for the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "account",
+                "notification",
+                "mark_as_read",
+                "all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "479b0bc6-1d33-44fa-8058-0a97a943b16c",
+              "name": "All notifications marked as read",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "notification",
+                    "mark_as_read",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://lemmy.world/api/v4",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "abe129e2-3bd1-4437-97cf-3a64201702bd",
+    "name": "Lemmy REST Account Notifications API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Lemmy REST API provides programmatic access to all core platform features of Lemmy, a free, open-source, self-hostable federated link aggregator and discussion platform. Developers can create and manage posts, comments, communities, and user accounts; vote on content; follow communities; search across the federated network; moderate communities; send private messages; and administer instances. Authentication uses JWT bearer tokens obtained via the login endpoint. The API is versioned at /api/v4/ and available on any public Lemmy instance.",
+      "type": "text/plain"
+    }
+  }
+}

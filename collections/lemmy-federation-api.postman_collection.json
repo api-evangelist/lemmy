@@ -1,0 +1,189 @@
+{
+  "item": [
+    {
+      "id": "a4c12613-a93a-454b-be0e-ecebefcf10d5",
+      "name": "Federation",
+      "description": {
+        "content": "ActivityPub federation and cross-instance operations",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7f88b321-b259-4c01-bb44-dad268d1f791",
+          "name": "Resolve a federated object by URL",
+          "request": {
+            "name": "Resolve a federated object by URL",
+            "description": {
+              "content": "Fetch a remote ActivityPub object by URL, causing the instance to fetch and cache it.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "resolve_object"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<uri>",
+                  "description": "(Required) "
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ed8b2f3b-1102-41fb-9b41-f5b2040147cc",
+              "name": "Resolved object",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "resolve_object"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<uri>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "970c1794-35bc-4e9a-b0c1-ac503d6a3602",
+          "name": "Get federated instances",
+          "request": {
+            "name": "Get federated instances",
+            "description": {
+              "content": "Returns lists of instances that this instance federates with, blocks, or allows.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "federated_instances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2829f8df-15d6-45aa-b2e7-6388053a9288",
+              "name": "Federated instance lists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "federated_instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://lemmy.world/api/v4",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "92664bd7-0f70-4b10-a250-730451617fcf",
+    "name": "Lemmy REST Account Federation API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Lemmy REST API provides programmatic access to all core platform features of Lemmy, a free, open-source, self-hostable federated link aggregator and discussion platform. Developers can create and manage posts, comments, communities, and user accounts; vote on content; follow communities; search across the federated network; moderate communities; send private messages; and administer instances. Authentication uses JWT bearer tokens obtained via the login endpoint. The API is versioned at /api/v4/ and available on any public Lemmy instance.",
+      "type": "text/plain"
+    }
+  }
+}

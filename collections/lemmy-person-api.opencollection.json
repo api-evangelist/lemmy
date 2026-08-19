@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lemmy REST Account Person API",
+    "version": "4.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Person",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get person details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lemmy.world/api/v4/person",
+            "params": [
+              {
+                "name": "person_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "username",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve profile information for a specific user."
+        },
+        {
+          "info": {
+            "name": "List persons",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lemmy.world/api/v4/person/list",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List users on the instance (federation endpoint)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

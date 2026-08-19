@@ -1,0 +1,190 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lemmy REST Account Comment API",
+    "version": "4.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Comment",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lemmy.world/api/v4/comment",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific comment by ID."
+        },
+        {
+          "info": {
+            "name": "Create a comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://lemmy.world/api/v4/comment",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Post a new comment on a post or reply to an existing comment."
+        },
+        {
+          "info": {
+            "name": "Edit a comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://lemmy.world/api/v4/comment",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the content of an existing comment. Requires comment author."
+        },
+        {
+          "info": {
+            "name": "Delete a comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://lemmy.world/api/v4/comment",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete or restore a comment. Requires comment author."
+        },
+        {
+          "info": {
+            "name": "List comments",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lemmy.world/api/v4/comment/list",
+            "params": [
+              {
+                "name": "type_",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "post_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "parent_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "community_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "max_depth",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "saved_only",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of comments for a post or community."
+        },
+        {
+          "info": {
+            "name": "Vote on a comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://lemmy.world/api/v4/comment/like",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upvote or downvote a comment (score 1, 0, or -1)."
+        },
+        {
+          "info": {
+            "name": "Save or unsave a comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://lemmy.world/api/v4/comment/save",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bookmark/unbookmark a comment for the current user."
+        },
+        {
+          "info": {
+            "name": "Report a comment",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://lemmy.world/api/v4/comment/report",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a report for a comment to the instance moderators."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

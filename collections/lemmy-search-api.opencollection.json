@@ -1,0 +1,82 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lemmy REST Account Search API",
+    "version": "4.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search for content",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lemmy.world/api/v4/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "community_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "community_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "creator_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "type_",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "listing_type",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search posts, comments, communities, and users across the federated network."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

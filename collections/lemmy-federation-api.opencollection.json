@@ -1,0 +1,53 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lemmy REST Account Federation API",
+    "version": "4.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Federation",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Resolve a federated object by URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lemmy.world/api/v4/resolve_object",
+            "params": [
+              {
+                "name": "q",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Fetch a remote ActivityPub object by URL, causing the instance to fetch and cache it."
+        },
+        {
+          "info": {
+            "name": "Get federated instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lemmy.world/api/v4/federated_instances"
+          },
+          "docs": "Returns lists of instances that this instance federates with, blocks, or allows."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

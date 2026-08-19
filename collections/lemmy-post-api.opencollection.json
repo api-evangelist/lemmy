@@ -1,0 +1,190 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lemmy REST Account Post API",
+    "version": "4.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Post",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get a post",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lemmy.world/api/v4/post",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "comment_id",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a specific post by ID."
+        },
+        {
+          "info": {
+            "name": "Create a post",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://lemmy.world/api/v4/post",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new post in a community."
+        },
+        {
+          "info": {
+            "name": "Edit a post",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://lemmy.world/api/v4/post",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing post. Only the post creator can edit."
+        },
+        {
+          "info": {
+            "name": "Delete a post",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://lemmy.world/api/v4/post",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete or restore a post. Requires post creator."
+        },
+        {
+          "info": {
+            "name": "List posts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lemmy.world/api/v4/post/list",
+            "params": [
+              {
+                "name": "type_",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "community_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "community_name",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "saved_only",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "show_nsfw",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of posts filtered by listing type, sort, community, and more."
+        },
+        {
+          "info": {
+            "name": "Vote on a post",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://lemmy.world/api/v4/post/like",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Upvote or downvote a post (score 1, 0, or -1)."
+        },
+        {
+          "info": {
+            "name": "Save or unsave a post",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://lemmy.world/api/v4/post/save",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Bookmark/unbookmark a post for the current user."
+        },
+        {
+          "info": {
+            "name": "Report a post",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://lemmy.world/api/v4/post/report",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Submit a report for a post to the instance moderators."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

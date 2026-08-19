@@ -1,0 +1,54 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lemmy REST Account Admin API",
+    "version": "4.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Admin",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Add or remove admin",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://lemmy.world/api/v4/admin/add",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Grant or revoke admin privileges for a user. Requires admin."
+        },
+        {
+          "info": {
+            "name": "Ban or unban a user from the site",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://lemmy.world/api/v4/admin/ban",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Prohibit or restore a user's access to this instance. Requires admin."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,483 @@
+{
+  "item": [
+    {
+      "id": "d63a6584-3a4b-4560-8bea-81b65a9a0c3c",
+      "name": "Site",
+      "description": {
+        "content": "Site-level information and configuration",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "39b5dd60-b851-4479-8144-02cb39a9ea1d",
+          "name": "Get site information",
+          "request": {
+            "name": "Get site information",
+            "description": {
+              "content": "Returns site information including configuration, admins, and statistics.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "site"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3986806b-2634-4e74-98e2-a615af8f9019",
+              "name": "Site information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "site"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"site_view\": {},\n  \"version\": \"string\",\n  \"my_user\": {},\n  \"discussion_languages\": [\n    4045,\n    2435\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "972a480f-d8b4-42a1-88e5-775bd3d43936",
+          "name": "Create the site",
+          "request": {
+            "name": "Create the site",
+            "description": {
+              "content": "Create the site (used during initial setup). Requires admin.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "site"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"sidebar\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"banner\": \"<string>\",\n  \"enable_downvotes\": \"<boolean>\",\n  \"enable_nsfw\": \"<boolean>\",\n  \"community_creation_admin_only\": \"<boolean>\",\n  \"require_email_verification\": \"<boolean>\",\n  \"require_application\": \"<boolean>\",\n  \"application_question\": \"<string>\",\n  \"private_instance\": \"<boolean>\",\n  \"default_theme\": \"<string>\",\n  \"default_post_listing_type\": \"<string>\",\n  \"legal_information\": \"<string>\",\n  \"default_post_sort_type\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a59e178c-7367-45a1-b306-c21239fa6549",
+              "name": "Site created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "site"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"sidebar\": \"<string>\",\n  \"description\": \"<string>\",\n  \"icon\": \"<string>\",\n  \"banner\": \"<string>\",\n  \"enable_downvotes\": \"<boolean>\",\n  \"enable_nsfw\": \"<boolean>\",\n  \"community_creation_admin_only\": \"<boolean>\",\n  \"require_email_verification\": \"<boolean>\",\n  \"require_application\": \"<boolean>\",\n  \"application_question\": \"<string>\",\n  \"private_instance\": \"<boolean>\",\n  \"default_theme\": \"<string>\",\n  \"default_post_listing_type\": \"All\",\n  \"legal_information\": \"<string>\",\n  \"default_post_sort_type\": \"New\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "692d733d-eb10-47bf-9fe4-e3284fb70e05",
+          "name": "Edit site settings",
+          "request": {
+            "name": "Edit site settings",
+            "description": {
+              "content": "Update site-level settings. Requires admin.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "site"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"sidebar\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enable_downvotes\": \"<boolean>\",\n  \"enable_nsfw\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "58f4bcb7-9a96-4aec-8d82-5c11fd8a5080",
+              "name": "Site updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "site"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"<string>\",\n  \"sidebar\": \"<string>\",\n  \"description\": \"<string>\",\n  \"enable_downvotes\": \"<boolean>\",\n  \"enable_nsfw\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f86e3e26-25d0-4607-b8b7-3c826c71c656",
+          "name": "Get moderation log",
+          "request": {
+            "name": "Get moderation log",
+            "description": {
+              "content": "Retrieve the moderation log for admin/mod actions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "modlog"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "mod_person_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "community_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fae20480-ae72-4ed6-874a-8e3de62a89a9",
+              "name": "Moderation log entries",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "modlog"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mod_person_id",
+                      "value": "3973"
+                    },
+                    {
+                      "key": "community_id",
+                      "value": "7892"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8c230b35-25b4-484c-aa84-3401c2e522d7",
+          "name": "Get federated instances",
+          "request": {
+            "name": "Get federated instances",
+            "description": {
+              "content": "Returns lists of instances that this instance federates with, blocks, or allows.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "federated_instances"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9b7797a4-bb60-40c3-90fc-a8423f0b7c7f",
+              "name": "Federated instance lists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "federated_instances"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://lemmy.world/api/v4",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2a1ab726-022e-4cba-9a54-bade8ef5229a",
+    "name": "Lemmy REST Account Site API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Lemmy REST API provides programmatic access to all core platform features of Lemmy, a free, open-source, self-hostable federated link aggregator and discussion platform. Developers can create and manage posts, comments, communities, and user accounts; vote on content; follow communities; search across the federated network; moderate communities; send private messages; and administer instances. Authentication uses JWT bearer tokens obtained via the login endpoint. The API is versioned at /api/v4/ and available on any public Lemmy instance.",
+      "type": "text/plain"
+    }
+  }
+}

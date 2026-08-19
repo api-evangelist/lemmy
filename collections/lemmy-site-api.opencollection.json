@@ -1,0 +1,109 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lemmy REST Account Site API",
+    "version": "4.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Site",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get site information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lemmy.world/api/v4/site"
+          },
+          "docs": "Returns site information including configuration, admins, and statistics."
+        },
+        {
+          "info": {
+            "name": "Create the site",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://lemmy.world/api/v4/site",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create the site (used during initial setup). Requires admin."
+        },
+        {
+          "info": {
+            "name": "Edit site settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://lemmy.world/api/v4/site",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update site-level settings. Requires admin."
+        },
+        {
+          "info": {
+            "name": "Get moderation log",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lemmy.world/api/v4/modlog",
+            "params": [
+              {
+                "name": "mod_person_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "community_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve the moderation log for admin/mod actions."
+        },
+        {
+          "info": {
+            "name": "Get federated instances",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lemmy.world/api/v4/federated_instances"
+          },
+          "docs": "Returns lists of instances that this instance federates with, blocks, or allows."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

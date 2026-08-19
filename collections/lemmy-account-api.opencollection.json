@@ -1,0 +1,115 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lemmy REST Account API",
+    "version": "4.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Account",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get current user details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lemmy.world/api/v4/account"
+          },
+          "docs": "Retrieve the currently authenticated user's profile and settings."
+        },
+        {
+          "info": {
+            "name": "Delete account",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://lemmy.world/api/v4/account",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Permanently delete the authenticated user's account."
+        },
+        {
+          "info": {
+            "name": "Get unread notification counts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lemmy.world/api/v4/account/unread_counts"
+          },
+          "docs": "Returns the count of unread notifications, messages, and mentions."
+        },
+        {
+          "info": {
+            "name": "Save user settings",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://lemmy.world/api/v4/account/settings/save",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the authenticated user's profile settings and preferences."
+        },
+        {
+          "info": {
+            "name": "List notifications",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lemmy.world/api/v4/account/notification/list",
+            "params": [
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "unread_only",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated list of notifications for the authenticated user."
+        },
+        {
+          "info": {
+            "name": "Mark all notifications as read",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://lemmy.world/api/v4/account/notification/mark_as_read/all"
+          },
+          "docs": "Mark all pending notifications as read for the authenticated user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

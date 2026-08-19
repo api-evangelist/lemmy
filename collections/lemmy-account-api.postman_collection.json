@@ -1,0 +1,540 @@
+{
+  "item": [
+    {
+      "id": "bc67eb20-5e4c-43aa-9dad-acc2a06bdce2",
+      "name": "Account",
+      "description": {
+        "content": "User account management and settings",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "761cb969-dfe2-431e-a055-801c17f49a80",
+          "name": "Get current user details",
+          "request": {
+            "name": "Get current user details",
+            "description": {
+              "content": "Retrieve the currently authenticated user's profile and settings.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "account"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7efff17b-e5d0-4b4b-ace0-7e0ec545ca7f",
+              "name": "Current user information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bceee6f5-b871-4862-bc8f-d8d66b6ca765",
+          "name": "Delete account",
+          "request": {
+            "name": "Delete account",
+            "description": {
+              "content": "Permanently delete the authenticated user's account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "account"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"password\": \"<password>\",\n  \"delete_content\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "16aad4cd-7e98-4f4e-a4c2-6989f0ca335a",
+              "name": "Account deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"password\": \"<password>\",\n  \"delete_content\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ef37d2d3-f208-45f6-84b0-8316a0e38a4e",
+          "name": "Get unread notification counts",
+          "request": {
+            "name": "Get unread notification counts",
+            "description": {
+              "content": "Returns the count of unread notifications, messages, and mentions.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "account",
+                "unread_counts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "29f5225f-7fc2-4934-aadd-9167018db48c",
+              "name": "Unread counts",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "unread_counts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "68a3b59c-d7dc-4565-b85d-a64b26eeacb7",
+          "name": "Save user settings",
+          "request": {
+            "name": "Save user settings",
+            "description": {
+              "content": "Update the authenticated user's profile settings and preferences.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "account",
+                "settings",
+                "save"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"show_nsfw\": \"<boolean>\",\n  \"theme\": \"<string>\",\n  \"default_sort_type\": \"<string>\",\n  \"default_listing_type\": \"<string>\",\n  \"interface_language\": \"<string>\",\n  \"avatar\": \"<string>\",\n  \"banner\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"bio\": \"<string>\",\n  \"show_avatars\": \"<boolean>\",\n  \"send_notifications_to_email\": \"<boolean>\",\n  \"bot_account\": \"<boolean>\",\n  \"show_bot_accounts\": \"<boolean>\",\n  \"matrix_user_id\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "0b0ee83e-bee9-4e68-8ce2-93430d74c555",
+              "name": "Settings saved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "settings",
+                    "save"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"show_nsfw\": \"<boolean>\",\n  \"theme\": \"<string>\",\n  \"default_sort_type\": \"Active\",\n  \"default_listing_type\": \"ModeratorView\",\n  \"interface_language\": \"<string>\",\n  \"avatar\": \"<string>\",\n  \"banner\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"email\": \"<email>\",\n  \"bio\": \"<string>\",\n  \"show_avatars\": \"<boolean>\",\n  \"send_notifications_to_email\": \"<boolean>\",\n  \"bot_account\": \"<boolean>\",\n  \"show_bot_accounts\": \"<boolean>\",\n  \"matrix_user_id\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a71d21e0-b1fa-475a-b80d-a6e7096b224b",
+          "name": "List notifications",
+          "request": {
+            "name": "List notifications",
+            "description": {
+              "content": "Retrieve a paginated list of notifications for the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "account",
+                "notification",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "unread_only",
+                  "value": "<boolean>"
+                }
+              ],
+              "variable": []
+            },
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ffe144dc-9de7-4b09-8eca-94f4be09d38a",
+              "name": "List of notifications",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "notification",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "unread_only",
+                      "value": "<boolean>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "20b85efe-d870-4ac3-83f0-ce4971ff968b",
+          "name": "Mark all notifications as read",
+          "request": {
+            "name": "Mark all notifications as read",
+            "description": {
+              "content": "Mark all pending notifications as read for the authenticated user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "account",
+                "notification",
+                "mark_as_read",
+                "all"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "6118d7d1-eb87-40ab-a22b-b3dac0d35e5f",
+              "name": "All notifications marked as read",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "account",
+                    "notification",
+                    "mark_as_read",
+                    "all"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://lemmy.world/api/v4",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6fcddbb9-14e6-4af7-9603-b2a6341e9ddd",
+    "name": "Lemmy REST Account API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Lemmy REST API provides programmatic access to all core platform features of Lemmy, a free, open-source, self-hostable federated link aggregator and discussion platform. Developers can create and manage posts, comments, communities, and user accounts; vote on content; follow communities; search across the federated network; moderate communities; send private messages; and administer instances. Authentication uses JWT bearer tokens obtained via the login endpoint. The API is versioned at /api/v4/ and available on any public Lemmy instance.",
+      "type": "text/plain"
+    }
+  }
+}

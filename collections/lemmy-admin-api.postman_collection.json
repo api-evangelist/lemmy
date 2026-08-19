@@ -1,0 +1,227 @@
+{
+  "item": [
+    {
+      "id": "8ed6012c-be8c-4a67-b390-7c9bfba8afe5",
+      "name": "Admin",
+      "description": {
+        "content": "Administrative actions",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a11874ef-f1f2-45d9-a44e-2294bf3b29e5",
+          "name": "Add or remove admin",
+          "request": {
+            "name": "Add or remove admin",
+            "description": {
+              "content": "Grant or revoke admin privileges for a user. Requires admin.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "add"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"person_id\": \"<integer>\",\n  \"added\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8753d100-329a-42ab-8b29-31807ed9aca3",
+              "name": "Admin status updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "add"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_id\": 7812,\n  \"added\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e37d3a5d-1cea-493f-8649-d7678edd0f04",
+          "name": "Ban or unban a user from the site",
+          "request": {
+            "name": "Ban or unban a user from the site",
+            "description": {
+              "content": "Prohibit or restore a user's access to this instance. Requires admin.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "ban"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"person_id\": \"<integer>\",\n  \"ban\": \"<boolean>\",\n  \"remove_data\": \"<boolean>\",\n  \"reason\": \"<string>\",\n  \"expires\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dc8a388d-ca32-4824-a181-389edc0b8284",
+              "name": "User ban status updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "ban"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"person_id\": 3812,\n  \"ban\": \"<boolean>\",\n  \"remove_data\": \"<boolean>\",\n  \"reason\": \"<string>\",\n  \"expires\": \"<integer>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://lemmy.world/api/v4",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dad23947-4473-4165-8af8-5c49a06a878e",
+    "name": "Lemmy REST Account Admin API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Lemmy REST API provides programmatic access to all core platform features of Lemmy, a free, open-source, self-hostable federated link aggregator and discussion platform. Developers can create and manage posts, comments, communities, and user accounts; vote on content; follow communities; search across the federated network; moderate communities; send private messages; and administer instances. Authentication uses JWT bearer tokens obtained via the login endpoint. The API is versioned at /api/v4/ and available on any public Lemmy instance.",
+      "type": "text/plain"
+    }
+  }
+}

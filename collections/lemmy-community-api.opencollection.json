@@ -1,0 +1,156 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Lemmy REST Account Community API",
+    "version": "4.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Community",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get community details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lemmy.world/api/v4/community",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Retrieve information about a specific community."
+        },
+        {
+          "info": {
+            "name": "Create a community",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://lemmy.world/api/v4/community",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new community on this instance."
+        },
+        {
+          "info": {
+            "name": "Edit a community",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://lemmy.world/api/v4/community",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an existing community. Requires mod or admin."
+        },
+        {
+          "info": {
+            "name": "Delete a community",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://lemmy.world/api/v4/community",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Delete a community. Requires community creator or admin."
+        },
+        {
+          "info": {
+            "name": "List communities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lemmy.world/api/v4/community/list",
+            "params": [
+              {
+                "name": "type_",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "show_nsfw",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "page",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "List communities available on this instance or across the network."
+        },
+        {
+          "info": {
+            "name": "Follow or unfollow a community",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://lemmy.world/api/v4/community/follow",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Subscribe or unsubscribe from a community."
+        },
+        {
+          "info": {
+            "name": "Get a random community",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://lemmy.world/api/v4/community/random"
+          },
+          "docs": "Returns a random community from the instance."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

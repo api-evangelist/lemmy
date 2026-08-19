@@ -1,0 +1,203 @@
+{
+  "item": [
+    {
+      "id": "7b60a3ef-2959-470a-9905-0b875c6a0c98",
+      "name": "Search",
+      "description": {
+        "content": "Search across posts, comments, communities, and users",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6cc5c613-428f-4cf3-85a0-be63b5a754a4",
+          "name": "Search for content",
+          "request": {
+            "name": "Search for content",
+            "description": {
+              "content": "Search posts, comments, communities, and users across the federated network.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "(Required) "
+                },
+                {
+                  "disabled": false,
+                  "key": "community_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "community_name",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "creator_id",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "type_",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "listing_type",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "<integer>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2e32fa89-67ef-41ab-99c4-c83eb28f7b73",
+              "name": "Search results",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "community_id",
+                      "value": "6229"
+                    },
+                    {
+                      "key": "community_name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "creator_id",
+                      "value": "4898"
+                    },
+                    {
+                      "key": "type_",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "TopSixMonths"
+                    },
+                    {
+                      "key": "listing_type",
+                      "value": "Local"
+                    },
+                    {
+                      "key": "page",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"type_\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://lemmy.world/api/v4",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "aed36246-6996-4cd4-a2ba-ce572a307e68",
+    "name": "Lemmy REST Account Search API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Lemmy REST API provides programmatic access to all core platform features of Lemmy, a free, open-source, self-hostable federated link aggregator and discussion platform. Developers can create and manage posts, comments, communities, and user accounts; vote on content; follow communities; search across the federated network; moderate communities; send private messages; and administer instances. Authentication uses JWT bearer tokens obtained via the login endpoint. The API is versioned at /api/v4/ and available on any public Lemmy instance.",
+      "type": "text/plain"
+    }
+  }
+}
