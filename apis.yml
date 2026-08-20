@@ -283,6 +283,8 @@ apis:
   humanURL: https://join-lemmy.org/docs/
   baseURL: https://lemmy.world/api/v4
   tags:
+  - Image
+  tags_raw:
   - Images
   properties:
   - type: OpenAPI
@@ -323,6 +325,8 @@ apis:
   humanURL: https://join-lemmy.org/docs/
   baseURL: https://lemmy.world/api/v4
   tags:
+  - Notification
+  tags_raw:
   - Notifications
   properties:
   - type: OpenAPI
@@ -363,6 +367,8 @@ apis:
   humanURL: https://join-lemmy.org/docs/
   baseURL: https://lemmy.world/api/v4
   tags:
+  - Persons
+  tags_raw:
   - Person
   properties:
   - type: OpenAPI
@@ -402,7 +408,8 @@ apis:
   description: Creating and managing posts
   humanURL: https://join-lemmy.org/docs/
   baseURL: https://lemmy.world/api/v4
-  tags:
+  tags: []
+  tags_raw:
   - Post
   properties:
   - type: OpenAPI
