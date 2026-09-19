@@ -45,6 +45,13 @@ tags:
   - Fediverse
   - Link Aggregator
   - Open-Source
+  - Social Network
+tags_raw:
+  - Communities
+  - Federated
+  - Fediverse
+  - Link Aggregator
+  - Open-Source
   - Social Networks
 url: https://raw.githubusercontent.com/api-evangelist/lemmy/refs/heads/main/apis.yml
 created: '2026-06-13'
