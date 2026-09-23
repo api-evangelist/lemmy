@@ -1,20 +1,7 @@
 {
   "provider": "lemmy",
   "sources": [
-    "lemmy-account-api-openapi.yml",
-    "lemmy-admin-api-openapi.yml",
-    "lemmy-authentication-api-openapi.yml",
-    "lemmy-comment-api-openapi.yml",
-    "lemmy-community-api-openapi.yml",
-    "lemmy-federation-api-openapi.yml",
-    "lemmy-images-api-openapi.yml",
-    "lemmy-notifications-api-openapi.yml",
-    "lemmy-person-api-openapi.yml",
-    "lemmy-post-api-openapi.yml",
-    "lemmy-private-messages-api-openapi.yml",
-    "lemmy-reports-api-openapi.yml",
-    "lemmy-search-api-openapi.yml",
-    "lemmy-site-api-openapi.yml"
+    "_original/openapi.yml"
   ],
   "outputs": [
     "lemmy-account-api-openapi.yml",
@@ -35,6 +22,25 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "lemmy-account-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lemmy-admin-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lemmy-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lemmy-comment-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lemmy-community-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lemmy-federation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lemmy-images-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lemmy-notifications-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lemmy-person-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lemmy-post-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lemmy-private-messages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lemmy-reports-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lemmy-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "lemmy-site-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

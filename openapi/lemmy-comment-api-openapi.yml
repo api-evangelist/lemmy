@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Lemmy REST Account Comment API
-  description: The Lemmy REST API provides programmatic access to all core platform features of Lemmy, a free, open-source, self-hostable federated link aggregator and discussion platform. Developers can create and manage posts, comments, communities, and user accounts; vote on content; follow communities; search across the federated network; moderate communities; send private messages; and administer instances. Authentication uses JWT bearer tokens obtained via the login endpoint. The API is versioned at /api/v4/ and available on any public Lemmy instance.
+  title: Lemmy REST Comment API
+  description: The Lemmy REST API provides programmatic access to all core platform features of Lemmy, a free, open-source, self-hostable federated link aggregator and discussion platform.
   version: 4.0.0
   license:
     name: AGPL-3.0
@@ -245,22 +245,26 @@ paths:
           description: Report submitted
 components:
   schemas:
-    CommunityId:
+    CommentId:
       type: integer
-      description: Unique identifier for a community
-    ListingType:
-      type: string
-      enum:
-      - All
-      - Local
-      - Subscribed
-      - ModeratorView
+      description: Unique identifier for a comment
     LanguageId:
       type: integer
       description: Unique identifier for a language
+    PostId:
+      type: integer
+      description: Unique identifier for a post
     PersonId:
       type: integer
       description: Unique identifier for a person/user
+    CommentSortType:
+      type: string
+      enum:
+      - Hot
+      - Top
+      - New
+      - Old
+      - Controversial
     CommentResponse:
       type: object
       properties:
@@ -271,20 +275,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PersonId'
-    CommentId:
-      type: integer
-      description: Unique identifier for a comment
-    CommentSortType:
+    ListingType:
       type: string
       enum:
-      - Hot
-      - Top
-      - New
-      - Old
-      - Controversial
-    PostId:
+      - All
+      - Local
+      - Subscribed
+      - ModeratorView
+    CommunityId:
       type: integer
-      description: Unique identifier for a post
+      description: Unique identifier for a community
   securitySchemes:
     bearerAuth:
       type: http

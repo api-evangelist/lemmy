@@ -1,7 +1,7 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: Lemmy REST Account Site API
-  description: The Lemmy REST API provides programmatic access to all core platform features of Lemmy, a free, open-source, self-hostable federated link aggregator and discussion platform. Developers can create and manage posts, comments, communities, and user accounts; vote on content; follow communities; search across the federated network; moderate communities; send private messages; and administer instances. Authentication uses JWT bearer tokens obtained via the login endpoint. The API is versioned at /api/v4/ and available on any public Lemmy instance.
+  title: Lemmy REST Site API
+  description: The Lemmy REST API provides programmatic access to all core platform features of Lemmy, a free, open-source, self-hostable federated link aggregator and discussion platform.
   version: 4.0.0
   license:
     name: AGPL-3.0
@@ -197,16 +197,9 @@ paths:
           description: Federated instance lists
 components:
   schemas:
-    CommunityId:
+    LanguageId:
       type: integer
-      description: Unique identifier for a community
-    ListingType:
-      type: string
-      enum:
-      - All
-      - Local
-      - Subscribed
-      - ModeratorView
+      description: Unique identifier for a language
     SortType:
       type: string
       enum:
@@ -229,12 +222,19 @@ components:
       - TopNineMonths
       - Controversial
       - Scaled
-    LanguageId:
-      type: integer
-      description: Unique identifier for a language
     PersonId:
       type: integer
       description: Unique identifier for a person/user
+    ListingType:
+      type: string
+      enum:
+      - All
+      - Local
+      - Subscribed
+      - ModeratorView
+    CommunityId:
+      type: integer
+      description: Unique identifier for a community
   securitySchemes:
     bearerAuth:
       type: http
