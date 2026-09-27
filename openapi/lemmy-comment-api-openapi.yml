@@ -245,9 +245,6 @@ paths:
           description: Report submitted
 components:
   schemas:
-    CommentId:
-      type: integer
-      description: Unique identifier for a comment
     LanguageId:
       type: integer
       description: Unique identifier for a language
@@ -257,14 +254,6 @@ components:
     PersonId:
       type: integer
       description: Unique identifier for a person/user
-    CommentSortType:
-      type: string
-      enum:
-      - Hot
-      - Top
-      - New
-      - Old
-      - Controversial
     CommentResponse:
       type: object
       properties:
@@ -282,6 +271,17 @@ components:
       - Local
       - Subscribed
       - ModeratorView
+    CommentId:
+      type: integer
+      description: Unique identifier for a comment
+    CommentSortType:
+      type: string
+      enum:
+      - Hot
+      - Top
+      - New
+      - Old
+      - Controversial
     CommunityId:
       type: integer
       description: Unique identifier for a community

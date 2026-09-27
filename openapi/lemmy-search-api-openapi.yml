@@ -104,9 +104,6 @@ paths:
                       type: object
 components:
   schemas:
-    CommunityId:
-      type: integer
-      description: Unique identifier for a community
     PersonId:
       type: integer
       description: Unique identifier for a person/user
@@ -132,6 +129,9 @@ components:
       - TopNineMonths
       - Controversial
       - Scaled
+    CommunityId:
+      type: integer
+      description: Unique identifier for a community
     ListingType:
       type: string
       enum:

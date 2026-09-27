@@ -12,17 +12,22 @@ description: >-
   written in Rust with an Actix web framework backend.
 type: Index
 deliveryModel:
-  model: unknown
-  open_source: unknown
+  model: open-core
+  license: AGPL-3.0
+  license_evidence:
+    repo: lemmynet/lemmy
+    spdx: AGPL-3.0
+    stars: 14611
+  open_source: true
   commercial: true
   callable_host: true
-  label: Delivery model not determined — needs a product licence on record
-  confidence: low
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: medium
   source:
   - openapi
   - pricing
-  - repository-unlicensed
-  generated: '2026-08-28'
+  - repository-license
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: free
@@ -40,11 +45,11 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/lemmy.png
 tags:
-  - Communities
+  - Community
   - Federated
   - Fediverse
   - Link Aggregator
-  - Open-Source
+  - Open Source
   - Social Network
 tags_raw:
   - Communities

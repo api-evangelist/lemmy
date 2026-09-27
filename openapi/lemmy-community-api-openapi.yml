@@ -242,19 +242,12 @@ paths:
           description: A random community
 components:
   schemas:
-    CommunityId:
-      type: integer
-      description: Unique identifier for a community
     LanguageId:
       type: integer
       description: Unique identifier for a language
-    ListingType:
-      type: string
-      enum:
-      - All
-      - Local
-      - Subscribed
-      - ModeratorView
+    CommunityId:
+      type: integer
+      description: Unique identifier for a community
     CommunityResponse:
       type: object
       properties:
@@ -265,6 +258,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LanguageId'
+    ListingType:
+      type: string
+      enum:
+      - All
+      - Local
+      - Subscribed
+      - ModeratorView
   securitySchemes:
     bearerAuth:
       type: http

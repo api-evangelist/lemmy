@@ -200,6 +200,16 @@ components:
     LanguageId:
       type: integer
       description: Unique identifier for a language
+    PersonId:
+      type: integer
+      description: Unique identifier for a person/user
+    ListingType:
+      type: string
+      enum:
+      - All
+      - Local
+      - Subscribed
+      - ModeratorView
     SortType:
       type: string
       enum:
@@ -222,16 +232,6 @@ components:
       - TopNineMonths
       - Controversial
       - Scaled
-    PersonId:
-      type: integer
-      description: Unique identifier for a person/user
-    ListingType:
-      type: string
-      enum:
-      - All
-      - Local
-      - Subscribed
-      - ModeratorView
     CommunityId:
       type: integer
       description: Unique identifier for a community
