@@ -242,12 +242,6 @@ paths:
           description: A random community
 components:
   schemas:
-    LanguageId:
-      type: integer
-      description: Unique identifier for a language
-    CommunityId:
-      type: integer
-      description: Unique identifier for a community
     CommunityResponse:
       type: object
       properties:
@@ -258,6 +252,12 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/LanguageId'
+    LanguageId:
+      type: integer
+      description: Unique identifier for a language
+    CommunityId:
+      type: integer
+      description: Unique identifier for a community
     ListingType:
       type: string
       enum:

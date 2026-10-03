@@ -197,12 +197,9 @@ paths:
           description: Federated instance lists
 components:
   schemas:
-    LanguageId:
+    CommunityId:
       type: integer
-      description: Unique identifier for a language
-    PersonId:
-      type: integer
-      description: Unique identifier for a person/user
+      description: Unique identifier for a community
     ListingType:
       type: string
       enum:
@@ -210,6 +207,9 @@ components:
       - Local
       - Subscribed
       - ModeratorView
+    LanguageId:
+      type: integer
+      description: Unique identifier for a language
     SortType:
       type: string
       enum:
@@ -232,9 +232,9 @@ components:
       - TopNineMonths
       - Controversial
       - Scaled
-    CommunityId:
+    PersonId:
       type: integer
-      description: Unique identifier for a community
+      description: Unique identifier for a person/user
   securitySchemes:
     bearerAuth:
       type: http

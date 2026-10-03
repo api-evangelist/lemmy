@@ -245,15 +245,22 @@ paths:
           description: Report submitted
 components:
   schemas:
-    LanguageId:
-      type: integer
-      description: Unique identifier for a language
     PostId:
       type: integer
       description: Unique identifier for a post
-    PersonId:
+    CommunityId:
       type: integer
-      description: Unique identifier for a person/user
+      description: Unique identifier for a community
+    ListingType:
+      type: string
+      enum:
+      - All
+      - Local
+      - Subscribed
+      - ModeratorView
+    LanguageId:
+      type: integer
+      description: Unique identifier for a language
     CommentResponse:
       type: object
       properties:
@@ -264,16 +271,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PersonId'
-    ListingType:
-      type: string
-      enum:
-      - All
-      - Local
-      - Subscribed
-      - ModeratorView
-    CommentId:
+    PersonId:
       type: integer
-      description: Unique identifier for a comment
+      description: Unique identifier for a person/user
     CommentSortType:
       type: string
       enum:
@@ -282,9 +282,9 @@ components:
       - New
       - Old
       - Controversial
-    CommunityId:
+    CommentId:
       type: integer
-      description: Unique identifier for a community
+      description: Unique identifier for a comment
   securitySchemes:
     bearerAuth:
       type: http
