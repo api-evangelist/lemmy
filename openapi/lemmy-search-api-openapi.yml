@@ -104,9 +104,6 @@ paths:
                       type: object
 components:
   schemas:
-    CommunityId:
-      type: integer
-      description: Unique identifier for a community
     PersonId:
       type: integer
       description: Unique identifier for a person/user
@@ -117,6 +114,9 @@ components:
       - Local
       - Subscribed
       - ModeratorView
+    CommunityId:
+      type: integer
+      description: Unique identifier for a community
     SortType:
       type: string
       enum:

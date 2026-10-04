@@ -277,22 +277,12 @@ paths:
           description: Report submitted
 components:
   schemas:
-    PostId:
-      type: integer
-      description: Unique identifier for a post
-    CommunityId:
-      type: integer
-      description: Unique identifier for a community
-    ListingType:
-      type: string
-      enum:
-      - All
-      - Local
-      - Subscribed
-      - ModeratorView
     LanguageId:
       type: integer
       description: Unique identifier for a language
+    CommentId:
+      type: integer
+      description: Unique identifier for a comment
     SortType:
       type: string
       enum:
@@ -321,9 +311,19 @@ components:
         post_view:
           type: object
           description: The post view with associated metadata
-    CommentId:
+    PostId:
       type: integer
-      description: Unique identifier for a comment
+      description: Unique identifier for a post
+    CommunityId:
+      type: integer
+      description: Unique identifier for a community
+    ListingType:
+      type: string
+      enum:
+      - All
+      - Local
+      - Subscribed
+      - ModeratorView
   securitySchemes:
     bearerAuth:
       type: http

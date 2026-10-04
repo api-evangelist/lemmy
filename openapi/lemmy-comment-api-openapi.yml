@@ -245,32 +245,18 @@ paths:
           description: Report submitted
 components:
   schemas:
+    LanguageId:
+      type: integer
+      description: Unique identifier for a language
+    CommentId:
+      type: integer
+      description: Unique identifier for a comment
     PostId:
       type: integer
       description: Unique identifier for a post
     CommunityId:
       type: integer
       description: Unique identifier for a community
-    ListingType:
-      type: string
-      enum:
-      - All
-      - Local
-      - Subscribed
-      - ModeratorView
-    LanguageId:
-      type: integer
-      description: Unique identifier for a language
-    CommentResponse:
-      type: object
-      properties:
-        comment_view:
-          type: object
-          description: The comment view with associated metadata
-        recipient_ids:
-          type: array
-          items:
-            $ref: '#/components/schemas/PersonId'
     PersonId:
       type: integer
       description: Unique identifier for a person/user
@@ -282,9 +268,23 @@ components:
       - New
       - Old
       - Controversial
-    CommentId:
-      type: integer
-      description: Unique identifier for a comment
+    ListingType:
+      type: string
+      enum:
+      - All
+      - Local
+      - Subscribed
+      - ModeratorView
+    CommentResponse:
+      type: object
+      properties:
+        comment_view:
+          type: object
+          description: The comment view with associated metadata
+        recipient_ids:
+          type: array
+          items:
+            $ref: '#/components/schemas/PersonId'
   securitySchemes:
     bearerAuth:
       type: http

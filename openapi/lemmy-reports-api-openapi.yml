@@ -100,15 +100,15 @@ paths:
           description: List of reports
 components:
   schemas:
-    PostId:
-      type: integer
-      description: Unique identifier for a post
-    CommunityId:
-      type: integer
-      description: Unique identifier for a community
     CommentId:
       type: integer
       description: Unique identifier for a comment
+    CommunityId:
+      type: integer
+      description: Unique identifier for a community
+    PostId:
+      type: integer
+      description: Unique identifier for a post
   securitySchemes:
     bearerAuth:
       type: http
