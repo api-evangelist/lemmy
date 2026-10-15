@@ -1,0 +1,13 @@
+fetched: '2026-10-15'
+method: fetched
+source: https://join-lemmy.org/docs/contributors/05-federation.html
+page: https://join-lemmy.org/docs/contributors/05-federation.html
+file: lemmy-activitypub-1.md
+bytes: 33929
+sha256: 2b601a92a21d83e3fc836eab7d94246d6b5151d95c1d3531404de27e37d9af1c
+anchor: activitypub
+shape: activitypub
+classification: declares-compatibility
+quote: Lemmy uses the ActivityPub protocol for communication between servers. If you are unfamiliar with the protocol,
+  you can start by reading the resource links . This document explains how to interact with it from other projects.
+note: text extracted from the provider's own page (tags stripped), saved for evidence

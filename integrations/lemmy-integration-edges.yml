@@ -1,0 +1,31 @@
+edges:
+- partner_name: ActivityPub
+  partner: activitypub
+  partner_match: shape-anchor
+  channel: provider-built
+  relationship: compatible
+  direction: provider-built
+  shape: activitypub
+  type: docs
+  degree: declared-subset
+  evidence: https://join-lemmy.org/docs/contributors/05-federation.html
+  evidence_kind: own-docs
+  evidence_file: https://github.com/api-evangelist/lemmy/blob/main/evidence/compatibility/lemmy-activitypub-1.md
+  quote: Lemmy uses the ActivityPub protocol for communication between servers. If you are unfamiliar with the protocol,
+    you can start by reading the resource links . This document explains how to interact with it from other projects.
+  supported_operations:
+  - Accept
+  - Add
+  - Create
+  - Follow
+  - Remove
+  - followers
+  - inbox
+  - outbox
+  - sharedInbox
+  unsupported_operations: []
+  supported_share: 0.36
+  detected_by: sweep-shape-compat.py
+  first_seen: '2026-10-15'
+generated: '2026-10-15'
+method: searched
