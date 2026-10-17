@@ -104,19 +104,12 @@ paths:
                       type: object
 components:
   schemas:
-    PersonId:
-      type: integer
-      description: Unique identifier for a person/user
-    ListingType:
-      type: string
-      enum:
-      - All
-      - Local
-      - Subscribed
-      - ModeratorView
     CommunityId:
       type: integer
       description: Unique identifier for a community
+    PersonId:
+      type: integer
+      description: Unique identifier for a person/user
     SortType:
       type: string
       enum:
@@ -139,6 +132,13 @@ components:
       - TopNineMonths
       - Controversial
       - Scaled
+    ListingType:
+      type: string
+      enum:
+      - All
+      - Local
+      - Subscribed
+      - ModeratorView
   securitySchemes:
     bearerAuth:
       type: http

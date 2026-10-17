@@ -197,6 +197,12 @@ paths:
           description: Federated instance lists
 components:
   schemas:
+    CommunityId:
+      type: integer
+      description: Unique identifier for a community
+    PersonId:
+      type: integer
+      description: Unique identifier for a person/user
     LanguageId:
       type: integer
       description: Unique identifier for a language
@@ -222,12 +228,6 @@ components:
       - TopNineMonths
       - Controversial
       - Scaled
-    PersonId:
-      type: integer
-      description: Unique identifier for a person/user
-    CommunityId:
-      type: integer
-      description: Unique identifier for a community
     ListingType:
       type: string
       enum:

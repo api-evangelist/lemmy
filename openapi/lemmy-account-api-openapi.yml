@@ -164,13 +164,6 @@ paths:
           description: All notifications marked as read
 components:
   schemas:
-    ListingType:
-      type: string
-      enum:
-      - All
-      - Local
-      - Subscribed
-      - ModeratorView
     SortType:
       type: string
       enum:
@@ -193,6 +186,13 @@ components:
       - TopNineMonths
       - Controversial
       - Scaled
+    ListingType:
+      type: string
+      enum:
+      - All
+      - Local
+      - Subscribed
+      - ModeratorView
   securitySchemes:
     bearerAuth:
       type: http

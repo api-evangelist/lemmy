@@ -277,12 +277,12 @@ paths:
           description: Report submitted
 components:
   schemas:
+    CommunityId:
+      type: integer
+      description: Unique identifier for a community
     LanguageId:
       type: integer
       description: Unique identifier for a language
-    CommentId:
-      type: integer
-      description: Unique identifier for a comment
     SortType:
       type: string
       enum:
@@ -305,18 +305,6 @@ components:
       - TopNineMonths
       - Controversial
       - Scaled
-    PostResponse:
-      type: object
-      properties:
-        post_view:
-          type: object
-          description: The post view with associated metadata
-    PostId:
-      type: integer
-      description: Unique identifier for a post
-    CommunityId:
-      type: integer
-      description: Unique identifier for a community
     ListingType:
       type: string
       enum:
@@ -324,6 +312,18 @@ components:
       - Local
       - Subscribed
       - ModeratorView
+    PostResponse:
+      type: object
+      properties:
+        post_view:
+          type: object
+          description: The post view with associated metadata
+    CommentId:
+      type: integer
+      description: Unique identifier for a comment
+    PostId:
+      type: integer
+      description: Unique identifier for a post
   securitySchemes:
     bearerAuth:
       type: http
