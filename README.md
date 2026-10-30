@@ -64,31 +64,178 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-Lemmy is a free, open-source, self-hostable federated link aggregator and discussion platform built as a Reddit alternative. It exposes a versioned REST API at /api/v4/ for creating posts, commenting, managing communities, voting, searching, and administering instances. Lemmy federates across the Fediverse using the ActivityPub protocol, allowing users on different Lemmy instances and compatible platforms (Mastodon, PeerTube, Friendica) to interact without a central server.
+Lemmy is a free, open-source, self-hostable federated link aggregator and discussion platform built as a Reddit alternative. It exposes a versioned REST API at /api/v4/ for creating posts, commenting, managing communities, voting, searching, and administering instances. Lemmy federates across the Fediverse using the ActivityPub protocol, allowing users on different Lemmy instances and compatible platforms (Mastodon, PeerTube, Friendica) to interact without a central server. Each instance operator configures their own rate limits; default limits include 50 comments per 10 minutes, 100 searches per 10 minutes, and 5 new registrations per day. Authentication uses JWT bearer tokens obtained via the login endpoint. The software is licensed under AGPL-3.0 and written in Rust with an Actix web framework backend.
 
-**API Version:** v4  
-**License:** AGPL-3.0  
-**Latest Release:** 0.19.19 (June 2026)  
-**Base URL (largest public instance):** https://lemmy.world/api/v4
+**Areas:** Community · Federated · Fediverse · Link Aggregator · Open Source · Social Network
 
-## Resources
+## Lemmy on APIs.io
 
-- [Documentation](https://join-lemmy.org/docs/)
-- [GitHub Organization](https://github.com/LemmyNet)
-- [Source Repository](https://github.com/LemmyNet/lemmy)
-- [JS Client](https://github.com/LemmyNet/lemmy-js-client)
+Everything profiled for Lemmy is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/lemmy/](https://apis.io/providers/lemmy/)** — or go straight to one of the APIs or properties below.
+
+### APIs (14)
+
+- [Lemmy Account API](https://apis.io/apis/lemmy/lemmy-account-api/) — User account management and settings
+- [Lemmy Admin API](https://apis.io/apis/lemmy/lemmy-admin-api/) — Administrative actions
+- [Lemmy Authentication API](https://apis.io/apis/lemmy/lemmy-authentication-api/) — Account registration, login, and password management
+- [Lemmy Comment API](https://apis.io/apis/lemmy/lemmy-comment-api/) — Creating and managing comments
+- [Lemmy Community API](https://apis.io/apis/lemmy/lemmy-community-api/) — Community management and discovery
+- [Lemmy Federation API](https://apis.io/apis/lemmy/lemmy-federation-api/) — ActivityPub federation and cross-instance operations
+- [Lemmy Images API](https://apis.io/apis/lemmy/lemmy-images-api/) — Image upload and retrieval
+- [Lemmy Notifications API](https://apis.io/apis/lemmy/lemmy-notifications-api/) — User notifications and alerts
+- [Lemmy Person API](https://apis.io/apis/lemmy/lemmy-person-api/) — User profiles and discovery
+- [Lemmy Post API](https://apis.io/apis/lemmy/lemmy-post-api/) — Creating and managing posts
+- [Lemmy Private Messages API](https://apis.io/apis/lemmy/lemmy-private-messages-api/) — Direct messaging between users
+- [Lemmy Reports API](https://apis.io/apis/lemmy/lemmy-reports-api/) — Content reporting and moderation
+- [Lemmy Search API](https://apis.io/apis/lemmy/lemmy-search-api/) — Search across posts, comments, communities, and users
+- [Lemmy Site API](https://apis.io/apis/lemmy/lemmy-site-api/) — Site-level information and configuration
+
+### Published properties
+
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
+
+#### Agentic access (1)
+
+Which operations an agent can call, which act, and which need a human in the loop.
+
+- [Lemmy Agentic Access](https://apis.io/agentic-access/lemmy/lemmy-agentic-access/)
+
+#### JSON Schema (3)
+
+The data models the API reads and writes.
+
+- [Comment](https://apis.io/schemas/lemmy/comment/)
+- [Community](https://apis.io/schemas/lemmy/community/)
+- [Post](https://apis.io/schemas/lemmy/post/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Lemmy Context](https://apis.io/jsonld/lemmy/lemmy-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Lemmy REST API Vocabulary](https://apis.io/vocabularies/lemmy/lemmy-vocabulary/)
+
+#### Examples (3)
+
+Example requests and responses.
+
+- [Create Post](https://apis.io/examples/lemmy/create-post/)
+- [Login](https://apis.io/examples/lemmy/login/)
+- [Search](https://apis.io/examples/lemmy/search/)
+
+#### Collections (14)
+
+Postman and Open Collection request collections.
+
+- [Lemmy REST Account API](https://apis.io/collections/lemmy/open-lemmy-account-api/)
+- [Lemmy REST Account Admin API](https://apis.io/collections/lemmy/open-lemmy-admin-api/)
+- [Lemmy REST Account Authentication API](https://apis.io/collections/lemmy/open-lemmy-authentication-api/)
+- [Lemmy REST Account Comment API](https://apis.io/collections/lemmy/open-lemmy-comment-api/)
+- [Lemmy REST Account Community API](https://apis.io/collections/lemmy/open-lemmy-community-api/)
+- [Lemmy REST Account Federation API](https://apis.io/collections/lemmy/open-lemmy-federation-api/)
+- [Lemmy REST Account Images API](https://apis.io/collections/lemmy/open-lemmy-images-api/)
+- [Lemmy REST Account Notifications API](https://apis.io/collections/lemmy/open-lemmy-notifications-api/)
+- [Lemmy REST Account Person API](https://apis.io/collections/lemmy/open-lemmy-person-api/)
+- [Lemmy REST Account Post API](https://apis.io/collections/lemmy/open-lemmy-post-api/)
+- [Lemmy REST Account Private Messages API](https://apis.io/collections/lemmy/open-lemmy-private-messages-api/)
+- [Lemmy REST Account Reports API](https://apis.io/collections/lemmy/open-lemmy-reports-api/)
+- [Lemmy REST Account Search API](https://apis.io/collections/lemmy/open-lemmy-search-api/)
+- [Lemmy REST Account Site API](https://apis.io/collections/lemmy/open-lemmy-site-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [Lemmy — jsonschema rules](https://apis.io/rules/lemmy/lemmy-jsonschema-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Lemmy Authentication](https://apis.io/security/lemmy/lemmy-authentication/)
+- [Lemmy Domain Security](https://apis.io/security/lemmy/lemmy-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Lemmy Plans Pricing](https://apis.io/plans/lemmy/lemmy-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Lemmy Rate Limits](https://apis.io/rate-limits/lemmy/lemmy-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Lemmy Finops](https://apis.io/finops/lemmy/lemmy-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://join-lemmy.org)
+- [Documentation](https://join-lemmy.org/docs/)
+- [Getting started](https://join-lemmy.org/docs/client_development/)
 - [Blog](https://join-lemmy.org/news/)
+- [GitHub](https://github.com/LemmyNet)
 
-## APIs
+## API Evangelist rating
 
-- **Lemmy REST API** — Full platform API for posts, comments, communities, voting, search, private messages, moderation, and administration.
+**Kin Score 34.3** — thin · rubric 0.24.0 · scored 2026-10-17
 
-## Files
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 70.8 |
+| Contract governance | 23.5 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 11.9 |
+| Access clarity | 7.9 |
 
-| File | Description |
-|------|-------------|
-| `apis.yml` | APIs.json 0.19 provider index |
-| `plans/lemmy-plans-pricing.yml` | API Commons Plans profile (free/OSS/managed hosting) |
-| `rate-limits/lemmy-rate-limits.yml` | API Commons Rate Limits profile |
-| `finops/lemmy-finops.yml` | FOCUS-aligned FinOps profile |
+**Agent readiness 19.2** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | documented (partial credit) |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/lemmy/](https://apis.io/providers/lemmy/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Lemmy: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/lemmy/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
